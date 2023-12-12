@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Symfony\Component\Routing\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
