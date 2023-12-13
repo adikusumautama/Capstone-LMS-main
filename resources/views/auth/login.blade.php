@@ -1,10 +1,10 @@
 @extends('layouts.frontend.masuk')
 <style>
-    body {
+    .body-login {
         background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp');
         background-size: cover;
         height: 100%;
-        background-position: 0 -100;
+        /* background-position: 0 -100; */
         background-repeat: no-repeat;
     }
 
