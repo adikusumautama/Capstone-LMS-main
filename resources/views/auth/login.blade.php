@@ -1,79 +1,192 @@
-@extends('layouts.frontend.index')
+@extends('layouts.frontend.masuk')
+<style>
+    body {
+        background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img3.webp');
+        background-size: cover;
+        height: 100%;
+        background-position: 0 -100;
+        background-repeat: no-repeat;
+    }
 
-@section('content')
-<!-- content start -->
-    <div class="container-fluid p-0 home-content container-top-border">
-        <!-- account block start -->
-        <div class="container">
-            <nav class="navbar clearfix secondary-nav pt-0 pb-0 login-page-seperator">
-                <ul class="list mt-0">
-                     <li><a href="{{ route('login') }}" class="active">Login</a></li>
-                     <li><a href="{{ route('register') }}">Register</a></li>
-                </ul>
-            </nav>
+    .login-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        padding: 40px;
+        transform: translate(-50%, -50%);
+        background: rgba(24, 20, 20, 0.987);
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+        border-radius: 10px;
+        /* Bikin opacity background */
+        opacity: .9;
+        /* Bikin backdrop-filter blur */
+        backdrop-filter: blur(10px) saturate(180%) grayscale(3%);
+    }
 
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 vertical-align d-none d-lg-block">
-                    <img class="img-fluid" src="{{ asset('frontend/img/logo-hitam.png') }}" width="500px" height="500px">
-                </div>
-                <div class="col-xl-6 offset-xl-0 col-lg-6 offset-lg-0 col-md-8 offset-md-2">
-                    <div class="rightRegisterForm">
-                    <form id="loginForm" class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
-                        <div class="p-4">
-                            <div class="form-group">
-                                <label>Email ID</label>
-                                <input name="email" type="text" class="form-control form-control-sm" placeholder="Email ID" value="{{ old('email') }}">
-                                @if ($errors->has('email'))
-                                <label class="error" for="email">{{ $errors->first('email') }}</label>
-                                @endif
-                                
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input name="password" type="password" class="form-control form-control-sm" placeholder="Password" value="{{ old('password') }}">
-                                @if ($errors->has('password'))
-                                <label class="error" for="password">{{ $errors->first('password') }}</label>
-                                @endif
-                            </div>
-                            <div class="form-group">
-                                <div class="row m-0">
-                                    <div class="custom-control custom-checkbox col-6">
-                                        <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="remember">Remember me</label>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="{{ route('password.request') }}" class="float-right forgot-text">Forgot password?</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-lg btn-block login-page-button button-lgn button2">Login</button>
-                            </div>
+    .login-box .user-box {
+        position: relative;
+    }
 
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    .login-box .user-box input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 30px;
+        border: none;
+        border-bottom: 1px solid #fff;
+        outline: none;
+        background: transparent;
+    }
+
+    .login-box .user-box label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px 0;
+        font-size: 16px;
+        color: #fff;
+        pointer-events: none;
+        transition: .5s;
+    }
+
+    .login-box .user-box input:focus~label,
+    .login-box .user-box input:valid~label {
+        top: -20px;
+        left: 0;
+        color: #bdb8b8;
+        font-size: 12px;
+    }
+
+    .login-box form a {
+        position: relative;
+        display: inline-block;
+        padding: 10px 20px;
+        color: #ffffff;
+        font-size: 16px;
+        text-decoration: none;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: .5s;
+        margin-top: 40px;
+        letter-spacing: 4px
+    }
+
+    /* .login-box a:hover {
+        background: #03f40f;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03f40f,
+            0 0 25px #03f40f,
+            0 0 50px #03f40f,
+            0 0 100px #03f40f;
+    } */
+    .login-box .cuy:hover {
+        background: #03f40f;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px #03f40f,
+            0 0 25px #03f40f,
+            0 0 50px #03f40f,
+            0 0 100px #03f40f;
+    }
+
+    .login-box .coy:hover {
+        background: red;
+        color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 5px red,
+            0 0 25px red,
+            0 0 50px red,
+            0 0 100px red;
+    }
+
+    .login-box a span {
+        position: absolute;
+        display: block;
+    }
+
+    @keyframes btn-anim1 {
+        0% {
+            left: -100%;
+        }
+
+        50%,
+        100% {
+            left: 100%;
+        }
+    }
+
+    /* .login-box a span:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03f40f);
+        animation: btn-anim1 2s linear infinite;
+    } */
+    .login-box .masuk:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #03f40f);
+        animation: btn-anim1 2s linear infinite;
+    }
+
+    .login-box .daftar:nth-child(1) {
+        bottom: 2px;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, red);
+        animation: btn-anim1 2s linear infinite;
+    }
+</style>
+<div class="login-box">
+    <form id="loginForm" class="form-horizontal" method="POST" action="{{ route('login') }}">
+        {{ csrf_field() }}
+        <div class="user-box">
+            <label>Email</label>
+            <input type="text" name="email" value="{{ old('email') }}">
+            @if ($errors->has('email'))
+            <label class="error" for="email">{{ $errors->first('email') }}</label>
+            @endif
         </div>
-
-        <!-- account block end -->
-    </div>
-    <!-- content end -->
-@endsection
+        <div class="user-box">
+            <label>Password</label>
+            <input type="password" name="password" value="{{ old('password') }}">
+            @if ($errors->has('password'))
+            <label class="error" for="password">{{ $errors->first('password') }}</label>
+            @endif
+        </div>
+        <center>
+            <button class="cuy" href="#" style="margin-right: 1rem">
+                LOGIN
+                <span class="masuk"></span>
+            </button>
+            <button class="coy" href="#">
+                <a href="">
+                    REGISTER
+                    <span class="daftar"></span>
+                </a>
+            </button>
+        </center>
+    </form>
+</div>
 
 @section('javascript')
 <script type="text/javascript">
-$(document).ready(function()
-{
-    $("#loginForm").validate({
+    $(document).ready(function () {
+        $("#loginForm").validate({
             rules: {
-                email:{
+                email: {
                     required: true,
-                    email:true
+                    email: true
                 },
-                password:{
+                password: {
                     required: true
                 }
             },
@@ -88,6 +201,6 @@ $(document).ready(function()
             }
         });
 
-});
+    });
 </script>
 @endsection

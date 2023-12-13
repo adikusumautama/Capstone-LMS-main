@@ -87,8 +87,46 @@
 
 <body>
     <div class="se-pre-con"></div>
+    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-current="page">Home
+                            <span class="visually-hidden">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="#">Action 1</a>
+                            <a class="dropdown-item" href="#">Action 2</a>
+                        </div>
+                    </li>
+                </ul>
+                <form class="d-flex my-2 my-lg-0">
+                    <input class="form-control me-sm-2" type="text" placeholder="Search" />
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                        Search
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
     <!-- Header -->
-    <nav class="navbar navbar-default fixed-top" style="background-color:#427D9D;">
+
+    <nav class="navbar navbar-default" style="background-color:#427D9D;">
         <div class="row" style="flex-grow: 1;">
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
                 <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
@@ -147,7 +185,7 @@
                         </a>
                         @endif
 
- 
+
 
                         <a class="dropdown-item" href="{{ route('my.courses') }}">
                             <i class="fa fa-sign-out-alt"></i> My Courses
@@ -182,6 +220,7 @@
 
     <!-- footer start -->
     <footer id="main-footer" style="background-color:#164863;">
+
         <div class="row m-0">
             <div class="col-lg-2 col-md-4 col-sm-4 col-6 mt-3">
                 <ul>
@@ -292,7 +331,8 @@
                             </div>
 
                             <div class="form-group mt-4">
-                                <button type="submit" class="btn btn-lg btn-block login-page-button button-lgn button2">Submit</button>
+                                <button type="submit"
+                                    class="btn btn-lg btn-block login-page-button button-lgn button2">Submit</button>
                             </div>
 
                         </div>
