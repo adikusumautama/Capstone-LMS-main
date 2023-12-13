@@ -112,14 +112,14 @@ figure figcaption {
                 @endif
         </div>
 
-        <div class="form-group col-md-4">
+        <!-- <div class="form-group col-md-4">
             <label class="form-control-label">Mobile </label>
             <input type="text" class="form-control" name="mobile" 
                 placeholder="Mobile" value="{{ $instructor->mobile }}" />
                 @if ($errors->has('mobile'))
                     <label class="error" for="mobile">{{ $errors->first('mobile') }}</label>
                 @endif
-        </div>
+        </div> -->
 
         
 
@@ -150,14 +150,14 @@ figure figcaption {
                 @endif
         </div>
 
-        <div class="form-group col-md-6">
+        <!-- <div class="form-group col-md-6">
             <label class="form-control-label">Google Plus Link </label>
             <input type="text" class="form-control" name="link_googleplus" 
                 placeholder="Google Plus Link" value="{{ $instructor->link_googleplus }}" />
                 @if ($errors->has('link_googleplus'))
                     <label class="error" for="link_googleplus">{{ $errors->first('link_googleplus') }}</label>
                 @endif
-        </div>
+        </div> -->
 
         </div>
 

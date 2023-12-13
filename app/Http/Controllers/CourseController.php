@@ -213,8 +213,8 @@ class CourseController extends Controller
 
         $category_search = $request->input('category_id');
         $instruction_level_id = $request->input('instruction_level_id');
-        $prices = $request->input('price_id');
-        $sort_price = $request->input('sort_price');
+        // $prices = $request->input('price_id');
+        // $sort_price = $request->input('sort_price');
         $keyword = $request->input('keyword');
         
         $query = DB::table('courses')
@@ -501,8 +501,8 @@ class CourseController extends Controller
         $course->overview = $request->input('overview');
 
         $course->duration = $request->input('duration');
-        $course->price = $request->input('price');
-        $course->strike_out_price = $request->input('strike_out_price');
+        // $course->price = $request->input('price');
+        // $course->strike_out_price = $request->input('strike_out_price');
         
         $course->is_active = $request->input('is_active');
         $course->save();
