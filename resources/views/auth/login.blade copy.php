@@ -30,7 +30,6 @@
                                 @if ($errors->has('email'))
                                 <label class="error" for="email">{{ $errors->first('email') }}</label>
                                 @endif
-
                             </div>
                             <div class="form-group">
                                 <label>Password</label>
