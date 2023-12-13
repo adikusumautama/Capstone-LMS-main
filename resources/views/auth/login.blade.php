@@ -8,7 +8,9 @@
         * {
             font-family: 'Poppins' !important;
         }
-
+        body {
+            background-repeat:no-repeat;
+        }
         .login-box {
             position: absolute;
             top: 50%;
@@ -16,10 +18,11 @@
             width: 400px;
             padding: 40px;
             transform: translate(-50%, -50%);
-            background: rgba(24, 20, 20, 0.987);
+            /* background: rgba(24, 20, 20, 0.987); */
             box-sizing: border-box;
             box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
             border-radius: 10px;
+            backdrop-filter: blur(6px) saturate(180%) grayscale(3%);
         }
 
         .login-box .user-box {
@@ -149,11 +152,11 @@
             </div>
             <center>
                 <div type="submit" class="container" style="gap: 0.5rem !important;">
-                    <button type="submit" class="log-in" style="background-color: rgba(24, 20, 20, 0.987);">
+                    <button type="submit" class="log-in" style="background-color: rgba(24, 20, 20, 0.987); border-radius:6px;">
                         Login
                         <span class="span-login"></span>
                     </button>
-                    <button type="button" class="daftar" style="background-color: rgba(24, 20, 20, 0.987);" onclick="window.location.href='{{ route('register') }}'">
+                    <button type="button" class="daftar" style="background-color: rgba(24, 20, 20, 0.987); border-radius:6px;" onclick="window.location.href='{{ route('register') }}'">
                         Register
                         <span class="span-daftar"></span>
                     </button>
