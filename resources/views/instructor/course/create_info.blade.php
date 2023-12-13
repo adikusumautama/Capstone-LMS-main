@@ -24,7 +24,7 @@
       <div class="row">
       
         <div class="form-group col-md-4">
-            <label class="form-control-label">Course Title <span class="required">*</span></label>
+            <label class="form-control-label">Title<span class="required">*</span></label>
             <input type="text" class="form-control" name="course_title" 
                 placeholder="Course Title" value="{{ $course->course_title }}" />
                 @if ($errors->has('course_title'))
@@ -50,7 +50,7 @@
         </div>
 
         <div class="form-group col-md-4">
-            <label class="form-control-label">Instruction Level <span class="required">*</span></label>
+            <label class="form-control-label">Level <span class="required">*</span></label>
             <select class="form-control" name="instruction_level_id">
                 <option value="">Select</option>
                 @foreach($instruction_levels as $instruction_level)
@@ -78,7 +78,7 @@
                 placeholder="Keywords" value="{{ $course->keywords }}" />
         </div>
 
-        <div class="form-group col-md-4">
+        <!-- <div class="form-group col-md-4">
             <label class="form-control-label">Price <i class="fa fa-info-circle" data-toggle="tooltip" data-original-title="Leave blank if the course is free"></i></label>
             <input type="number" class="form-control" name="price" 
                 placeholder="Course Price" value="{{ $course->price }}" />
@@ -88,7 +88,7 @@
             <label class="form-control-label">Strike Out Price <i class="fa fa-info-circle" data-toggle="tooltip" data-original-title="Applied only for paid courses"></i></label>
             <input type="text" class="form-control" name="strike_out_price" 
                 placeholder="Strike Out Price" value="{{ $course->strike_out_price }}" />
-        </div>
+        </div> -->
 
         <div class="form-group col-md-4">
             <label class="form-control-label">Status</label>
@@ -120,7 +120,7 @@
       <div class="form-group row">
         <div class="col-md-4">
           <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-default btn-outline">Reset</button>
+          <!-- <button type="reset" class="btn btn-default btn-outline">Reset</button> -->
         </div>
       </div>
       
