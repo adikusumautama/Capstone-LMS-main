@@ -58,9 +58,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     //Functions accessed by only students
     Route::group(['middleware' => 'role:student'], function () {
-        // Route::get('student-dashboard', 'InstructorController@dashboard')->name('student.dashboard');
+        // Route::get('student-dashboard', 'StudentController@dashboard')->name('student.dashboard');
         Route::get('student-dashboard', function () {
-            return view('student/student_dashboard');
+            return view('student/dashboard/student_dashboard');
         })->name('student.dashboard');
         Route::get('course-enroll-api/{course_slug}/{lecture_slug}/{is_sidebar}', 'CourseController@courseEnrollAPI');
         Route::get('readPDF/{file_id}', 'CourseController@readPDF');

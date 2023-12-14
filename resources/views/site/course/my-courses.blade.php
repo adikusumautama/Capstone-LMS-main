@@ -1,24 +1,24 @@
-@extends('layouts.frontend.index')
+@extends('layouts.backend.my')
 @section('content')
 <!-- content start -->
     <div class="container-fluid p-0 home-content">
         <!-- banner start -->
-        <div class="subpage-slide-blue">
+        <!-- <div class="subpage-slide-blue">
             <div class="container">
                 <h1>My Courses</h1>
             </div>
-        </div>
+        </div> -->
         <!-- banner end -->
 
         <!-- breadcrumb start -->
-        <div class="breadcrumb-container">
+        <!-- <div class="breadcrumb-container">
             <div class="container">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">My Courses</li>
               </ol>
             </div>
-        </div>
+        </div> -->
         
         <!-- breadcrumb end -->
 
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </main>
-                            <footer>
+                            <!-- <footer>
                                 <div class="c-row">
                                     <div class="col-md-6 col-sm-6 col-6">
                                         @php $course_price = $course->price ? config('config.default_currency').$course->price : 'Free'; @endphp
@@ -55,7 +55,7 @@
                                         </star>
                                     </div>
                                 </div>
-                            </footer>
+                            </footer> -->
                         </a>    
                         </div>
                     </div>

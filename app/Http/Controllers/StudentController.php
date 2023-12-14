@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Image;
 use SiteHelpers;
+
 use Crypt;
 use URL;
 use Session;
@@ -59,8 +60,8 @@ class InstructorController extends Controller
                         ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
                         ->where('courses.student_id', $student_id)
                         ->paginate(5);
-        $metrics = Student::metrics($student_id);
-        return view('student.student_dashboard', compact('courses', 'metrics'));
+        $metrics = user::metrics($student_id);
+        return view('student.dashboard.student_dashboard', compact('courses', 'metrics'));
     }
 
     public function contactInstructor(Request $request)

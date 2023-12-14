@@ -1,4 +1,4 @@
-@extends('layouts.backend.my')
+@extends('layouts.frontend.index')
 @section('content')
 <?php 
     $get = '';
@@ -40,11 +40,11 @@
 <!-- content start -->
     <div class="container-fluid p-0 home-content">
         <!-- banner start -->
-        <!-- <div class="subpage-slide-blue">
+        <div class="subpage-slide-blue">
             <div class="container">
                 <h1>Course List</h1>
             </div>
-        </div> -->
+        </div>
         <!-- banner end -->
 
         <!-- breadcrumb start -->
@@ -61,7 +61,6 @@
         <div class="container mt-5">
             <div class="row">
                 <!-- filter start -->
-                
                 <div class="col-xl-2 col-lg-2 col-md-3 d-none d-md-block">
                 <form method="GET" action="{{ route('course.list') }}" id="courseList">
                     <span class="blue-title">Filter Results</span>

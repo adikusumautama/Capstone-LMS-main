@@ -152,7 +152,7 @@
             </div>
             <center>
                 <div type="submit" class="container" style="gap: 0.5rem !important;">
-                    <button type="submit" class="log-in" style="background-color: rgba(24, 20, 20, 0.987); border-radius:6px;">
+                    <button type="submit" class="log-in" style="background-color: rgba(24, 20, 20, 0.987); border-radius:6px; margin-right:20px;">
                         Login
                         <span class="span-login"></span>
                     </button>

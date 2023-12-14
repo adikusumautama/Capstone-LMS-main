@@ -1,10 +1,29 @@
-@extends('layouts.backend.index')
+@extends('layouts.frontend.index')
 @section('content')
-<div class="page-header">
-  <h1 class="page-title">Dashboard</h1>
-</div>
-<div class="page-content container-fluid">
-<div class="container" id="my-courses">
+<!-- content start -->
+    <div class="container-fluid p-0 home-content">
+        <!-- banner start -->
+        <div class="subpage-slide-blue">
+            <div class="container">
+                <h1>My Courses</h1>
+            </div>
+        </div>
+        <!-- banner end -->
+
+        <!-- breadcrumb start -->
+        <div class="breadcrumb-container">
+            <div class="container">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Courses</li>
+              </ol>
+            </div>
+        </div>
+        
+        <!-- breadcrumb end -->
+
+        <!-- course list start -->
+        <div class="container" id="my-courses">
             <div class="row">
             @if(count($courses)> 0 )
             @foreach($courses as $course)
@@ -57,5 +76,4 @@
             
         </div>
         <!-- course list end -->
-</div>
 @endsection
