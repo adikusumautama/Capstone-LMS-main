@@ -213,8 +213,8 @@ class CourseController extends Controller
 
         $category_search = $request->input('category_id');
         $instruction_level_id = $request->input('instruction_level_id');
-        // $prices = $request->input('price_id');
-        // $sort_price = $request->input('sort_price');
+        $prices = $request->input('price_id');
+        $sort_price = $request->input('sort_price');
         $keyword = $request->input('keyword');
         
         $query = DB::table('courses')

@@ -12,7 +12,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['students'] }}</span>
-                <span class="counter-number-related text-capitalize">students</span>
+                <span class="counter-number-related text-capitalize">Students</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>
@@ -27,7 +27,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['instructors'] }}</span>
-                <span class="counter-number-related text-capitalize">instructors</span>
+                <span class="counter-number-related text-capitalize">Teacher</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>
@@ -42,7 +42,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['courses'] }}</span>
-                <span class="counter-number-related text-capitalize">courses</span>
+                <span class="counter-number-related text-capitalize">Class</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>
@@ -61,9 +61,9 @@
             <table class="table table-hover table-striped">
                 <thead>
                     <tr>
-                    <th>Sl.no</th>
+                    <th>No</th>
                     <th>Title</th>
-                    <th>Slug</th>
+                    <!-- <th>Slug</th> -->
                     <th>Category</th>
                     <th>Instructor</th>
                     <!-- <th>Price</th> -->
@@ -75,7 +75,7 @@
                     <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $course->course_title }}</td>
-                    <td>{{ $course->course_slug }}</td>
+                    <!-- <td>{{ $course->course_slug }}</td> -->
                     <td>{{ $course->category_name }}</td>
                     <td>{{ $course->instructor_name }}</td>
                     <!-- <td>{{ $course->price ? $course->price : 'Free' }}</td> -->

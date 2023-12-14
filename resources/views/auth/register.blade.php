@@ -33,7 +33,7 @@
   display: flex;
   align-items: center;
   padding-left: 30px;
-  color: #00bfff;
+  color: #9BBEC8;
 }
 
 .title::before {
@@ -55,7 +55,7 @@
   width: 16px;
   border-radius: 50%;
   left: 0px;
-  background-color: #00bfff;
+  background-color: #9BBEC8;
 }
 
 .message, 

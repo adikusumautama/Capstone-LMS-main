@@ -12,7 +12,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['courses'] }}</span>
-                <span class="counter-number-related text-capitalize">courses</span>
+                <span class="counter-number-related text-capitalize">Kelas</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>
@@ -27,7 +27,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['lectures'] }}</span>
-                <span class="counter-number-related text-capitalize">lectures</span>
+                <span class="counter-number-related text-capitalize">Perkuliahan</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>
@@ -42,7 +42,7 @@
             <div class="counter counter-md counter-inverse text-left">
               <div class="counter-number-group">
                 <span class="counter-number">{{ $metrics['videos'] }}</span>
-                <span class="counter-number-related text-capitalize">videos</span>
+                <span class="counter-number-related text-capitalize">Materi</span>
               </div>
               <div class="counter-label text-capitalize">in total</div>
             </div>

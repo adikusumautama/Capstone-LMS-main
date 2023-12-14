@@ -199,7 +199,7 @@ figure figcaption {
       <div class="form-group row">
         <div class="col-md-4">
           <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-default btn-outline">Reset</button>
+          <!-- <button type="reset" class="btn btn-default btn-outline">Reset</button> -->
         </div>
       </div>
       
