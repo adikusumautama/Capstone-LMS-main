@@ -3,7 +3,7 @@
 <div class="page-header">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Users Management</a></li>
+    <!-- <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Users Management</a></li> -->
     <li class="breadcrumb-item active">Add</li>
   </ol>
   <h1 class="page-title">Add User</h1>
@@ -13,7 +13,7 @@
 
 <div class="panel">
   <div class="panel-body">
-    <form method="POST" action="" id="userForm">
+    <form method="POST" action="{{ route('student.saveUser') }}" id="userForm">
       {{ csrf_field() }}
       <input type="hidden" name="user_id" value="{{ $user->id }}">
       <div class="row">
@@ -90,7 +90,7 @@
       <div class="form-group row">
         <div class="col-md-4">
           <button type="submit" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-default btn-outline">Reset</button>
+          <!-- <button type="reset" class="btn btn-default btn-outline">Reset</button> -->
         </div>
       </div>
       

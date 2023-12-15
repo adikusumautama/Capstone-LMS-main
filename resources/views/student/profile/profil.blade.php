@@ -69,7 +69,7 @@
                   {{-- @endif --}}
                 </td> -->
                 <td>
-                  <a href="{{ url('admin/user-form/'.Auth::user()->id) }}" class="btn btn-xs btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
+                  <a href="{{ url('student/user-form/'.Auth::user()->id) }}" class="btn btn-xs btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
                     <i class="icon wb-pencil" aria-hidden="true"></i>
                   </a>
                 </td>
