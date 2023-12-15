@@ -38,7 +38,7 @@
                 <th>Last Name</th>
                 <th>Email ID</th>
                 <th>Roles</th>
-                <th>Status</th>
+                <!-- <th>Status</th> -->
                 <th>Actions</th>
               </tr>
             </thead>
@@ -49,7 +49,7 @@
                 <td>{{ $user->first_name }}</td>
                 <td>{{ $user->last_name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>
+                <!-- <td>
                   @foreach($user->roles as $role)
                     @if($role->name == 'student')
                         <span class="badge badge-primary">{{ ucfirst($role->name) }}</span>
@@ -60,14 +60,14 @@
                     <br>
                     @endif
                   @endforeach
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                   @if($user->is_active)
                   <span class="badge badge-success">Active</span>
                   @else
                   <span class="badge badge-danger">Inactive</span>
                   @endif
-                </td>
+                </td> -->
                 <td>
                   <a href="{{ url('admin/user-form/'.$user->id) }}" class="btn btn-xs btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
                     <i class="icon wb-pencil" aria-hidden="true"></i>

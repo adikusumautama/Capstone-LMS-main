@@ -77,7 +77,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('course-enroll-api/{course_slug}/{lecture_slug}/{is_sidebar}', 'CourseController@courseEnrollAPI');
         Route::get('readPDF/{file_id}', 'CourseController@readPDF');
 
-        Route::get('student/dashboard/profile', 'StudentController@viewProfile')->name('std.profile');
+        Route::get('student/dashboard/profile', 'StudentSecondController@index')->name('std.profile');
         Route::get('student/user-form/', 'StudentSecondController@getForm');
         Route::get('student/user-form/{user_id}', 'StudentSecondController@getForm');
 

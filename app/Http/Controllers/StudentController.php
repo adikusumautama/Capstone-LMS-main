@@ -28,6 +28,7 @@ class StudentController extends Controller
 {
     public function viewProfile()
     {
+        
         return view('student.profile.profil');
     }
     public function withdrawRequests($user_id = '', Request $request)
