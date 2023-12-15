@@ -1,16 +1,6 @@
 <?php
-/**
- * PHP Version 7.1.7-1
- * Functions for users
- *
- * @category  File
- * @package   User
- * @author    Mohamed Yahya
- * @copyright ULEARN  
- * @license   BSD Licence
- * @link      Link
- */
-namespace App\Http\Controllers\Admin;
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -19,25 +9,8 @@ use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-/**
- * Class contain functions for admin
- *
- * @category  Class
- * @package   User
- * @author    Mohamed Yahya
- * @copyright ULEARN
- * @license   BSD Licence
- * @link      Link
- */
-class UserController extends Controller
+class StudentSecondController extends Controller
 {
-    /**
-     * Function to display the dashboard contents for admin
-     *
-     * @param array $request All input values from form
-     *
-     * @return contents to display in dashboard
-     */
     public function index(Request $request)
     {
         $paginate_count = 10;
@@ -58,9 +31,15 @@ class UserController extends Controller
             })->paginate($paginate_count);
         }
 
-        return view('admin.users.index', compact('users'));
+        return view('student.profile.profil', compact('users'));
     }
-
+    /**
+     * Function to display the dashboard contents for admin
+     *
+     * @param array $request All input values from form
+     *
+     * @return contents to display in dashboard
+     */
     public function getForm($user_id = '', Request $request)
     {
         if ($user_id) {
@@ -68,7 +47,7 @@ class UserController extends Controller
         } else {
             $user = $this->getColumnTable('users');
         }
-        return view('admin.users.form', compact('user'));
+        return view('student.profile.form', compact('user'));
     }
 
     public function saveUser(Request $request)
@@ -137,7 +116,7 @@ class UserController extends Controller
         }
 
 
-        return $this->return_output('flash', 'success', $success_message, 'admin/users', '200');
+        return $this->return_output('flash', 'success', $success_message, 'student/dashboard/profile', '200');
     }
 
     public function getData()
@@ -151,5 +130,4 @@ class UserController extends Controller
             )
             ->make(true);
     }
-
 }

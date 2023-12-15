@@ -77,6 +77,11 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('course-enroll-api/{course_slug}/{lecture_slug}/{is_sidebar}', 'CourseController@courseEnrollAPI');
         Route::get('readPDF/{file_id}', 'CourseController@readPDF');
 
+        Route::get('student/dashboard/profile', 'StudentController@viewProfile')->name('std.profile');
+        Route::get('student/user-form/', 'StudentSecondController@getForm');
+        Route::get('student/user-form/{user_id}', 'StudentSecondController@getForm');
+
+        Route::get('student/dashboard', 'StudentController@viewDashboard')->name('std.dashboard');
     });
 
     //Functions accessed by both student and instructor
@@ -132,8 +137,10 @@ Route::group(['middleware' => 'auth'], function () {
         
         // Sorting Curriculum
         Route::post('courses/curriculum/sort', 'CourseController@postCurriculumSort');
+
     });
 
+    
     
     //Functions accessed by only admin users
     Route::group(['middleware' => 'role:admin'], function () {

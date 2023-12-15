@@ -24,8 +24,47 @@ use Session;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactInstructor;
 
-class InstructorController extends Controller
+class StudentController extends Controller
 {
+    public function viewProfile()
+    {
+        return view('student.profile.profil');
+    }
+    public function withdrawRequests($user_id = '', Request $request)
+    {
+        $withdraw_requests = WithdrawRequest::paginate(10);
+        return view('admin.dashboard.withdraw_requests', compact('withdraw_requests'));
+    }
+
+    public function approveWithdrawRequest($request_id = '', Request $request)
+    {
+        $withdraw_request = WithdrawRequest::find($request_id);
+
+        $request_amount = $withdraw_request->amount;
+        $instructor_credit = $withdraw_request->instructor->total_credits;
+
+        if ($request_amount > $instructor_credit) {
+            return $this->return_output('flash', 'error', 'Requested amount exceeds the Instructor credits', 'back', '422');
+        }
+
+        $instructor_id = $withdraw_request->instructor_id;
+        Instructor::find($instructor_id)->decrement('total_credits', $request_amount);
+
+        $withdraw_request->status = 1;
+        $withdraw_request->save();
+
+        return $this->return_output('flash', 'success', 'Withdraw request approved successfully', 'back', '200');
+    }
+    public function viewDashboard()
+    {
+        $courses = DB::table('courses')
+            ->select('courses.*', 'categories.name as category_name', 'instructors.first_name as instructor_name')
+            ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
+            ->leftJoin('instructors', 'instructors.id', '=', 'courses.instructor_id')
+            ->paginate(5);
+        $metrics = Instructor::admin_metrics();
+        return view('student.dashboard.student_dashboard', compact('courses', 'metrics'));
+    }
     /**
      * Create a new controller instance.
      *
@@ -33,16 +72,16 @@ class InstructorController extends Controller
      */
     public function __construct()
     {
-        
+
     }
 
     public function instructorList()
     {
         $paginate_count = 8;
-        
+
         $instructors = DB::table('instructors')->groupBy('instructors.id')->paginate($paginate_count);
         return view('site.instructors', compact('instructors'));
-        
+
     }
 
     public function instructorView($instructor_slug = '', Request $request)
@@ -56,10 +95,10 @@ class InstructorController extends Controller
     {
         $student_id = \Auth::user()->student->id;
         $courses = DB::table('courses')
-                        ->select('courses.*', 'categories.name as category_name')
-                        ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
-                        ->where('courses.student_id', $student_id)
-                        ->paginate(5);
+            ->select('courses.*', 'categories.name as category_name')
+            ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
+            ->where('courses.student_id', $student_id)
+            ->paginate(5);
         $metrics = user::metrics($student_id);
         return view('student.dashboard.student_dashboard', compact('courses', 'metrics'));
     }
@@ -72,7 +111,7 @@ class InstructorController extends Controller
     }
     public function becomeInstructor(Request $request)
     {
-        if(!\Auth::check()){
+        if (!\Auth::check()) {
             return $this->return_output('flash', 'error', 'Please login to become an Instructor', 'back', '422');
         }
 
@@ -87,7 +126,7 @@ class InstructorController extends Controller
         $last_name = $request->input('last_name');
 
         //create slug only while add
-        $slug = $first_name.'-'.$last_name;
+        $slug = $first_name . '-' . $last_name;
         $slug = str_slug($slug, '-');
 
         $results = DB::select(DB::raw("SELECT count(*) as total from instructors where instructor_slug REGEXP '^{$slug}(-[0-9]+)?$' "));
@@ -104,8 +143,8 @@ class InstructorController extends Controller
 
         $role = Role::where('name', 'instructor')->first();
         $user->roles()->attach($role);
-        
-        return redirect()->route('instructor.dashboard') ;
+
+        return redirect()->route('instructor.dashboard');
     }
 
     public function getProfile(Request $request)
@@ -124,10 +163,10 @@ class InstructorController extends Controller
             'contact_email' => 'required|string|email|max:255',
             'telephone' => 'required|string|max:255',
             'paypal_id' => 'required|string|email|max:255',
-            'biography' => 'required',            
+            'biography' => 'required',
         ];
 
-        $validator = Validator::make($request->all(),$validation_rules);
+        $validator = Validator::make($request->all(), $validation_rules);
 
         // Stop if validation fails
         if ($validator->fails()) {
@@ -144,7 +183,7 @@ class InstructorController extends Controller
 
         $instructor->link_facebook = $request->input('link_facebook');
         $instructor->link_linkedin = $request->input('link_linkedin');
-        $instructor->link_twitter  = $request->input('link_twitter');
+        $instructor->link_twitter = $request->input('link_twitter');
         $instructor->link_googleplus = $request->input('link_googleplus');
 
         $instructor->paypal_id = $request->input('paypal_id');
@@ -159,22 +198,22 @@ class InstructorController extends Controller
             }
 
             //get filename
-            $file_name   = $request->file('course_image')->getClientOriginalName();
+            $file_name = $request->file('course_image')->getClientOriginalName();
 
             // returns Intervention\Image\Image
             $image_make = Image::make($request->input('course_image_base64'))->encode('jpg');
 
             // create path
-            $path = "instructor/".$instructor->id;
-            
+            $path = "instructor/" . $instructor->id;
+
             //check if the file name is already exists
             $new_file_name = SiteHelpers::checkFileName($path, $file_name);
 
             //save the image using storage
-            Storage::put($path."/".$new_file_name, $image_make->__toString(), 'public');
+            Storage::put($path . "/" . $new_file_name, $image_make->__toString(), 'public');
 
-            $instructor->instructor_image = $path."/".$new_file_name;
-            
+            $instructor->instructor_image = $path . "/" . $new_file_name;
+
         }
 
         $instructor->save();
@@ -186,9 +225,9 @@ class InstructorController extends Controller
     public function credits(Request $request)
     {
         $credits = Credit::where('instructor_id', \Auth::user()->instructor->id)
-                        ->where('credits_for', 1)
-                        ->orderBy('created_at', 'desc')
-                        ->paginate(10);
+            ->where('credits_for', 1)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('instructor.credits', compact('credits'));
     }
@@ -208,9 +247,11 @@ class InstructorController extends Controller
     public function listWithdrawRequests(Request $request)
     {
         $withdraw_requests = WithdrawRequest::where('instructor_id', \Auth::user()->instructor->id)
-                            ->paginate(10);
+            ->paginate(10);
 
         return view('instructor.withdraw_requests', compact('withdraw_requests'));
     }
-    
+
+
+
 }
