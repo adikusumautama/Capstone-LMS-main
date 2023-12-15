@@ -105,7 +105,7 @@
                     </svg>
                 </div>
                 <div class="text">
-                <a class="dropdown-item" href="{{ route('logOut') }}">Logout</a>
+                <a class="dropdown-item" href="{{ route('logOut') }}" style="text-decoration:none;">Logout</a>
                 </div>
             </button>
         </center>

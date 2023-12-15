@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Register</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: "class",
-    }
-  </script>
-  <style>
+@extends('layouts.frontend.masuk')
+
+@section('content')
+<!-- content start -->
+<style>
          * {
             font-family: 'Poppins' !important;
         }
@@ -164,7 +156,7 @@
   --btn-shadow-color: rgba(0, 0, 0, 0.137);
   --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
   --hover-btn-color: #FAC921;
-  --default-btn-color: #9BBEC8;
+  --default-btn-color: #fff;
   --font-size: 16px;
   /* 👆 this field should not be empty */
   --font-weight: 600;
@@ -381,7 +373,6 @@ body {
 
 /* End Style Bg Theme */
 </style>
-</head>
 <body>
 <div class="relative flex flex-col h-[100vh] items-center bg-white dark:bg-black transition-bg">
     <div class="absolute inset-0 overflow-hidden">
@@ -399,7 +390,8 @@ body {
             class="px-3 py-1 border border-stone-200 rounded-full drop-shadow-sm text-sm text-stone-800 dark:text-white bg-white/40 dark:bg-black/40 backdrop-blur-lg hover:border-stone-300 transition-colors dark:border-stone-500 dark:hover:border-stone-400">
             Click Me</button>
     </div>
-    <center>
+</div>
+<center>
 <form class="form" method="POST" action="{{ route('register') }}" id="registerForm">
     {{ csrf_field() }}
     <p class="title" style="color: #427D9D;">Register </p>
@@ -455,10 +447,11 @@ body {
     <p class="signin" style="color: #427D9D;">Already have an acount ? <a href="{{ route('login') }}" style="text-decoration:none;">Signin</a> </p>
 </form>
 </center>
-</div>
-
 </body>
     <!-- content end -->
+@endsection
+
+@section('javascript')
 <script type="text/javascript">
 $(document).ready(function()
 {
@@ -508,12 +501,8 @@ $(document).ready(function()
         });
 
 });
-function toggleTheme() {
-            if (document.body.classList.contains("dark"))
-                document.body.classList.remove("dark");
-            else
-                document.body.classList.add("dark");
-        }
 </script>
+@endsection
 
-</html>
+@section('javascript')
+@endsection

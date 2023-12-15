@@ -31,7 +31,7 @@
             box-sizing: border-box;
             box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
             border-radius: 10px;
-            backdrop-filter: blur(6px) saturate(180%) grayscale(3%);
+            /* backdrop-filter: blur(6px) saturate(180%) grayscale(3%); */
         }
 
         .login-box .user-box {
@@ -231,18 +231,18 @@
     </div>
 </div>
     <div class="login-box">
-        <h1 style="color: #427D9D;">Login</h1>
+        <h1 style="color: #427D9D;margin-bottom:15px;">Login</h1>
 
         <form id="loginForm" method="POST" action="{{ route('login') }}">
             {{ csrf_field() }}
             <div class="user-box">
-                <input type="text" name="email" value="{{ old('email') }}" placeholder="Email">
+                <input type="text" name="email" value="{{ old('email') }}" placeholder="Email" style="color: #427D9D;">
                 @if ($errors->has('email'))
                 <label for="email">{{ $errors->first('email') }}</label>
                 @endif
             </div>
             <div class="user-box">
-                <input type="password" name="password" value="{{ old('password') }}" placeholder="Password">
+                <input type="password" name="password" value="{{ old('password') }}" placeholder="Password" style="color: #427D9D;">
                 @if ($errors->has('password'))
                 <label class="error" for="password">{{ $errors->first('password') }}</label>
                 @endif
