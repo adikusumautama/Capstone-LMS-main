@@ -13,7 +13,7 @@
 
 <div class="panel">
   <div class="panel-body">
-    <form method="POST" action="{{ route('admin.saveUser') }}" id="userForm">
+    <form method="POST" action="" id="userForm">
       {{ csrf_field() }}
       <input type="hidden" name="user_id" value="{{ $user->id }}">
       <div class="row">
