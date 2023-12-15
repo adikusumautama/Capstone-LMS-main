@@ -39,48 +39,48 @@
                 <th>Email ID</th>
                 <th>Roles</th>
                 <!-- <th>Status</th> -->
-                <th>Actions</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
-              @foreach($users as $user)
+              {{-- @foreach($users as $user) --}}
               <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->first_name }}</td>
-                <td>{{ $user->last_name }}</td>
-                <td>{{ $user->email }}</td>
-                <!-- <td>
-                  @foreach($user->roles as $role)
-                    @if($role->name == 'student')
-                        <span class="badge badge-primary">{{ ucfirst($role->name) }}</span>
-                    @elseif($role->name == 'instructor')
-                        <span class="badge badge-warning">{{ ucfirst($role->name) }}</span>
+                <td>{{ Auth::user()->id }}</td>
+                <td>{{ Auth::user()->first_name }}</td>
+                <td>{{ Auth::user()->last_name }}</td>
+                <td>{{ Auth::user()->email }}</td>
+                <td>
+                  {{-- @foreach(Auth::user()->roles as $role) --}}
+                    @if(Auth::user()->name == 'student')
+                        <span class="badge badge-primary">{{ ucfirst(Auth::user()->name) }}</span>
+                    @elseif(Auth::user()->name == 'instructor')
+                        <span class="badge badge-warning">{{ ucfirst(Auth::user()->name) }}</span>
                     @endif
-                    @if(!$loop->last)
+                    {{-- @if(!$loop->last)
                     <br>
-                    @endif
-                  @endforeach
-                </td> -->
+                    @endif --}}
+                  {{-- @endforeach --}}
+                </td> 
                 <!-- <td>
-                  @if($user->is_active)
+                  {{-- @if($user->is_active) --}}
                   <span class="badge badge-success">Active</span>
-                  @else
+                  {{-- @else --}}
                   <span class="badge badge-danger">Inactive</span>
-                  @endif
+                  {{-- @endif --}}
                 </td> -->
                 <td>
-                  <a href="{{ url('admin/user-form/'.$user->id) }}" class="btn btn-xs btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
+                  <a href="{{ url('admin/user-form/'.Auth::user()->id) }}" class="btn btn-xs btn-icon btn-inverse btn-round" data-toggle="tooltip" data-original-title="Edit">
                     <i class="icon wb-pencil" aria-hidden="true"></i>
                   </a>
                 </td>
               </tr>
-              @endforeach
+              {{-- @endforeach --}}
             </tbody>
           </table>
           
-          <div class="float-right">
-            {{ $users->appends(['search' => Request::input('search')])->links() }}
-          </div>
+          {{-- <div class="float-right">
+            {{ Auth::user()->appends(['search' => Request::input('search')])->links() }}
+          </div> --}}
           
           
         </div>
