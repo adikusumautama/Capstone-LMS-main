@@ -4,9 +4,9 @@
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
     <!-- <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Users Management</a></li> -->
-    <li class="breadcrumb-item active">Add</li>
+    <li class="breadcrumb-item active">Profile</li>
   </ol>
-  <h1 class="page-title">Add User</h1>
+  <h1 class="page-title">User Profile</h1>
 </div>
 
 <div class="page-content">
@@ -44,7 +44,7 @@
             <label class="error" for="email">{{ $errors->first('email') }}</label>
         @endif
       </div>
-      <div class="form-group col-md-4">
+      <!-- <div class="form-group col-md-4">
         <label class="form-control-label">Status</label>
         <div>
           <div class="radio-custom radio-default radio-inline">
@@ -75,7 +75,7 @@
               @endif
               </div>
           </div>
-      </div>
+      </div> -->
       
       <div class="form-group col-md-4">
         <label class="form-control-label" >Password</label>

@@ -174,7 +174,7 @@
 
 
     <!-- Footer -->
-    <footer class="site-footer">
+    <footer class="site-footer fixed-buttom ml-0 mb-0">
         <div class="site-footer-legal">© {{ date('Y') }} <a href="javascript:void(0)"
                 style="text-decoration:none;">UNI - LEARN</a></div>
     </footer>
