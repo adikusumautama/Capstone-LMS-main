@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap.min599c.css?v4.0.2') }}">
   <link rel="stylesheet" href="{{ asset('backend/css/bootstrap-extend.min599c.css?v4.0.2') }}">
   <link rel="stylesheet" href="{{ asset('backend/assets/css/site.min599c.css?v4.0.2') }}">
-
+  
   
 
   <!-- Plugins -->
@@ -45,12 +45,51 @@
   <script>
     Breakpoints();
   </script>
+  <style>
+        /* body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif}
+        .w3-bar,h1,button {font-family: "Montserrat", sans-serif}
+        .fa-anchor,.fa-coffee {font-size:200px} */
+        .button-lgn {
+            background-color: #164863;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .become {
+            background-color: #164863;
+            /* border: none; */
+            color: #DDF2FD;
+            padding: 5px 11px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            /* font-size: 16px; */
+            /* margin: 4px 2px; */
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+            border-radius: 8px;
+        }
+  </style>
 </head>
 <body>
   <nav class="site-navbar navbar navbar-default navbar-fixed-top navbar-mega navbar-expand-md"
     role="navigation">
 
-    <div class="navbar-header" style="background-color:#427D9D">
+    <div class="navbar-header" style="background-color:#427D9D;">
       <button type="button" class="navbar-toggler hamburger hamburger-close navbar-toggler-left hided"
         data-toggle="menubar">
         <span class="sr-only">Toggle navigation</span>

@@ -1,8 +1,8 @@
-@extends('layouts.backend.index')
+@extends('layouts.backend.my')
 @section('content')
 <div class="page-header">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="{{ route('std.dashboard') }}">Dashboard</a></li>
     <li class="breadcrumb-item active">Profile</li>
   </ol>
   <h1 class="page-title">Profile User</h1>
