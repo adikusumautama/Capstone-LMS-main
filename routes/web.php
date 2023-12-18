@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('readPDF/{file_id}', 'CourseController@readPDF');
 
         Route::get('student/dashboard/profile', 'StudentSecondController@index')->name('std.profile');
-        Route::get('student/user-form/', 'StudentSecondController@getForm');
+        Route::get('student/user-form/', 'StudentSecondController@getForm')->name('std.getForm');
         Route::get('student/user-form/{user_id}', 'StudentSecondController@getForm');
         Route::get('student/dashboard', 'StudentController@viewDashboard')->name('std.dashboard');
         Route::post('student/save-user', 'StudentSecondController@saveUser')->name('student.saveUser');

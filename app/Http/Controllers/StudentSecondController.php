@@ -14,37 +14,32 @@ class StudentSecondController extends Controller
     public function index(Request $request)
     {
         $paginate_count = 10;
-        if ($request->has('search')) {
+        if($request->has('search')){
             $search = $request->input('search');
             $users = User::whereHas('RoleUser', function ($query) {
-                $query->where('role_id', '<>', 3);
-            })
-                ->where(function ($q) use ($search) {
-                    $q->where('first_name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('last_name', 'LIKE', '%' . $search . '%')
-                        ->orWhere('email', 'LIKE', '%' . $search . '%');
-                })
-                ->paginate($paginate_count);
-        } else {
+                                $query->where('role_id', '<>', 3);
+                            })
+                           ->where(function ($q) use ($search) {
+                            $q->where('first_name', 'LIKE', '%' . $search . '%')
+                               ->orWhere('last_name', 'LIKE', '%' . $search . '%')
+                               ->orWhere('email', 'LIKE', '%' . $search . '%');
+                           })
+                           ->paginate($paginate_count);
+        }
+        else {
             $users = User::whereHas('RoleUser', function ($query) {
                 $query->where('role_id', '<>', 3);
             })->paginate($paginate_count);
         }
-
+        
         return view('student.profile.profil', compact('users'));
     }
-    /**
-     * Function to display the dashboard contents for admin
-     *
-     * @param array $request All input values from form
-     *
-     * @return contents to display in dashboard
-     */
-    public function getForm($user_id = '', Request $request)
+
+    public function getForm($user_id='', Request $request)
     {
-        if ($user_id) {
+        if($user_id) {
             $user = User::find($user_id);
-        } else {
+        }else{
             $user = $this->getColumnTable('users');
         }
         return view('student.profile.form', compact('user'));
@@ -57,7 +52,7 @@ class StudentSecondController extends Controller
 
         //validation rules
         if ($user_id) {
-
+            
             $validation_rules = [
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
@@ -65,7 +60,7 @@ class StudentSecondController extends Controller
             ];
 
         } else {
-
+            
             $validation_rules = [
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
@@ -76,7 +71,7 @@ class StudentSecondController extends Controller
 
         }
 
-        $validator = Validator::make($request->all(), $validation_rules);
+        $validator = Validator::make($request->all(),$validation_rules);
 
         // Stop if validation fails
         if ($validator->fails()) {
@@ -98,15 +93,15 @@ class StudentSecondController extends Controller
         $user->email = $request->input('email');
 
         $password = $request->input('password');
-        if ($password) {
+        if($password) {
             $user->password = bcrypt($password);
         }
-
+        
 
         $user->is_active = $request->input('is_active');
         $user->save();
 
-        if ($request->exists('roles')) {
+        if($request->exists('roles')) {
             $roles = $request->input('roles');
             foreach ($roles as $role_name) {
                 $role = Role::where('name', $role_name)->first();
@@ -114,20 +109,20 @@ class StudentSecondController extends Controller
             }
 
         }
-
-
+        
+        
         return $this->return_output('flash', 'success', $success_message, 'student/dashboard/profile', '200');
     }
 
     public function getData()
     {
         return DataTables::eloquent(User::query())
-            ->addColumn(
-                'user',
-                function (User $user) {
-                    return '<span class="badge badge-primary">Primary</span>';
-                }
-            )
-            ->make(true);
+                            ->addColumn(
+                                'user',
+                                function (User $user) {
+                                    return '<span class="badge badge-primary">Primary</span>';
+                                }
+                            )
+        ->make(true);
     }
 }

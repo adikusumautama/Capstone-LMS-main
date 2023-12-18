@@ -1,12 +1,12 @@
-@extends('layouts.backend.my')
+@extends('layouts.backend.index')
 @section('content')
 <div class="page-header">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-    <!-- <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Users Management</a></li> -->
-    <li class="breadcrumb-item active">Profile</li>
+    <li class="breadcrumb-item"><a href="{{ route('admin.users') }}">Profile</a></li>
+    <li class="breadcrumb-item active">Edit Profile</li>
   </ol>
-  <h1 class="page-title">User Profile</h1>
+  <h1 class="page-title">Edit</h1>
 </div>
 
 <div class="page-content">
@@ -44,30 +44,13 @@
             <label class="error" for="email">{{ $errors->first('email') }}</label>
         @endif
       </div>
-      <!-- <div class="form-group col-md-4">
-        <label class="form-control-label">Status</label>
-        <div>
-          <div class="radio-custom radio-default radio-inline">
-            <input type="radio" id="inputBasicActive" name="is_active" value="1" @if($user->is_active) checked @endif />
-            <label for="inputBasicActive">Active</label>
-          </div>
-          <div class="radio-custom radio-default radio-inline">
-            <input type="radio" id="inputBasicInactive" name="is_active" value="0" @if(!$user->is_active) checked @endif/>
-            <label for="inputBasicInactive">Inactive</label>
-          </div>
-        </div>
-      </div>
 
       <div class="form-group col-md-4">
-          <label class="form-control-label">Role</label>
+          <label class="form-control-label">Click</label>
           <div>
               <div class="checkbox-custom checkbox-default checkbox-inline">
                 <input type="checkbox" id="inputCheckboxStudent" name="roles[]" value="student" @if($user->id && $user->hasRole('student')) checked @endif>
-                <label for="inputCheckboxStudent">Student</label>
-              </div>
-              <div class="checkbox-custom checkbox-default checkbox-inline">
-                <input type="checkbox" id="inputCheckboxInstructor" name="roles[]" value="instructor" @if($user->id &&  $user->hasRole('instructor')) checked @endif>
-                <label for="inputCheckboxInstructor">Instructor</label>
+                <label for="inputCheckboxStudent">Jika sudah terisi biarkan, jika belum harap tekan!</label>
               </div>
               <div id="role-div-error">
               @if ($errors->has('roles'))
@@ -75,7 +58,7 @@
               @endif
               </div>
           </div>
-      </div> -->
+      </div>
       
       <div class="form-group col-md-4">
         <label class="form-control-label" >Password</label>
@@ -90,7 +73,7 @@
       <div class="form-group row">
         <div class="col-md-4">
           <button type="submit" class="btn btn-primary">Submit</button>
-          <!-- <button type="reset" class="btn btn-default btn-outline">Reset</button> -->
+          <button type="reset" class="btn btn-default btn-outline">Reset</button>
         </div>
       </div>
       
@@ -148,7 +131,7 @@
                     minlength: 'The password must be at least 6 characters.'
                 },
                 "roles[]": {
-                    required: 'The role field is required.'
+                    required: 'Field is required.'
                 }
             },
             errorPlacement: function(error, element) {
