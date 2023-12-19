@@ -44,7 +44,7 @@
                             aria-hidden="true"></i></div>
                     <div class="counter counter-md counter-inverse text-left">
                         <div class="counter-number-group">
-                            <span class="counter-number">{{ $metrics['videos'] }}</span>
+                            <span class="counter-number">@if(is_array($metrics) && isset($metrics['videos'])) @endif</span>
                             <span class="counter-number-related text-capitalize">Materi</span>
                         </div>
                         <div class="counter-label text-capitalize">in total</div>
