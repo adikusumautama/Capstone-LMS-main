@@ -1,5 +1,48 @@
 @extends('layouts.frontend.index')
 @section('content')
+<style>
+    .button-x {
+  --color: #0077ff;
+  font-family: inherit;
+  display: inline-block;
+  width: 6em;
+  height: 2.6em;
+  line-height: 2.5em;
+  overflow: hidden;
+  margin: 20px;
+  font-size: 17px;
+  z-index: 1;
+  color: var(--color);
+  border: 2px solid var(--color);
+  border-radius: 6px;
+  position: relative;
+}
+
+.button-x::before {
+  position: absolute;
+  content: "";
+  background: var(--color);
+  width: 150px;
+  height: 200px;
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.button-x:hover {
+  color: white;
+}
+
+.button-x:before {
+  top: 100%;
+  left: 100%;
+  transition: .3s all;
+}
+
+.button-x:hover::before {
+  top: -30px;
+  left: -30px;
+}
+</style>
 <!-- content start -->
     <div class="container-fluid p-0 home-content">
         <!-- banner start -->
@@ -66,7 +109,9 @@
                     <div class="col-12 not-found-col">
                             <span><b>2<span class="blue">0</span>4</b></span>
                             <h3>Sorry! No courses added to your account</h3>
-                            <a href="{{ route('course.list') }}" class="btn btn-ulearn-cview mt-3">Explore Courses</a>
+                            <button class="button-x">
+                                <a href="{{ route('course.list') }}">Pilih Kelasmu</a>
+                            </button>
                     </div>
                     </div>
                 </article>
