@@ -1,11 +1,12 @@
-@extends('layouts.frontend.index')
+@extends('layouts.backend.my')
 @section('content')
 <style>
     .button-x {
   --color: #0077ff;
+  background-color:#52D3D8;
   font-family: inherit;
   display: inline-block;
-  width: 6em;
+  width: 8em;
   height: 2.6em;
   line-height: 2.5em;
   overflow: hidden;
@@ -13,7 +14,7 @@
   font-size: 17px;
   z-index: 1;
   color: var(--color);
-  border: 2px solid var(--color);
+  border: 2px solid white;
   border-radius: 6px;
   position: relative;
 }
@@ -22,14 +23,14 @@
   position: absolute;
   content: "";
   background: var(--color);
-  width: 150px;
+  width: 200px;
   height: 200px;
   z-index: -1;
   border-radius: 50%;
 }
 
 .button-x:hover {
-  color: white;
+  color:#fff;
 }
 
 .button-x:before {
@@ -46,22 +47,22 @@
 <!-- content start -->
     <div class="container-fluid p-0 home-content">
         <!-- banner start -->
-        <div class="subpage-slide-blue">
+        <!-- <div class="subpage-slide-blue">
             <div class="container">
                 <h1>My Courses</h1>
             </div>
-        </div>
+        </div> -->
         <!-- banner end -->
 
         <!-- breadcrumb start -->
-        <div class="breadcrumb-container">
+        <!-- <div class="breadcrumb-container">
             <div class="container">
               <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="index.php">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">My Courses</li>
               </ol>
             </div>
-        </div>
+        </div> -->
         
         <!-- breadcrumb end -->
 
@@ -84,7 +85,7 @@
                                     </div>
                                 </div>
                             </main>
-                            <footer>
+                            <!-- <footer>
                                 <div class="c-row">
                                     <div class="col-md-6 col-sm-6 col-6">
                                         @php $course_price = $course->price ? config('config.default_currency').$course->price : 'Free'; @endphp
@@ -98,7 +99,7 @@
                                         </star>
                                     </div>
                                 </div>
-                            </footer>
+                            </footer> -->
                         </a>    
                         </div>
                     </div>
@@ -107,10 +108,10 @@
                 <article class="container not-found-block">
                     <div class="row">
                     <div class="col-12 not-found-col">
-                            <span><b>2<span class="blue">0</span>4</b></span>
-                            <h3>Sorry! No courses added to your account</h3>
+                            <span><b>2<span style="color:#0077ff;">0</span>4</b></span>
+                            <h3>Sorry! Tidak Ada Kelas Pada Akunmu</h3>
                             <button class="button-x">
-                                <a href="{{ route('course.list') }}">Pilih Kelasmu</a>
+                                <a href="{{ route('course.list') }}" style="color:#EEF5FF"><b>Pilih Kelas</b></a>
                             </button>
                     </div>
                     </div>
