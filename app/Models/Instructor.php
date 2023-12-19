@@ -24,12 +24,6 @@ class Instructor extends Model
                                 ->leftJoin('curriculum_sections', 'curriculum_sections.course_id', '=', 'courses.id')                       
                                 ->leftJoin('curriculum_lectures_quiz', 'curriculum_lectures_quiz.section_id', '=', 'curriculum_sections.section_id')
                                 ->count();
-        $metrics['videos'] = \DB::table('courses')
-                                ->where('courses.instructor_id', $instructor_id)
-                                ->where('curriculum_lectures_quiz.media_type', 0)
-                                ->leftJoin('curriculum_sections', 'curriculum_sections.course_id', '=', 'courses.id')                       
-                                ->leftJoin('curriculum_lectures_quiz', 'curriculum_lectures_quiz.section_id', '=', 'curriculum_sections.section_id')
-                                ->count();
         return $metrics;
     }
 

@@ -42,6 +42,9 @@
     <link href="/vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!-- Template Main CSS File -->
     <link href="/css/style.css" rel="stylesheet">
     <style>
@@ -86,10 +89,14 @@
 </head>
 
 <body>
-    <div class="se-pre-con"></div>
+    {{-- Navbar --}}
     <nav class="navbar navbar-expand-xl navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
+                <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
+                <a href="{{ route('home') }}" class="float-xl-right text-dark"><img
+                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="49" />Uni-Learn</a>
+            </div>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -106,118 +113,95 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownId">
-                            <a class="dropdown-item" href="#">Action 1</a>
-                            <a class="dropdown-item" href="#">Action 2</a>
+                            aria-haspopup="true" aria-expanded="false">Categories</a>
+                        <?php
+                        $categories = SiteHelpers::active_categories();
+                        ?>
+                        <div class="dropdown-menu">
+                            @foreach ($categories as $category)
+                                <a class="dropdown-item"
+                                    href="{{ route('course.list', 'category_id[]=' . $category->id) }}">
+                                    <!-- <i class="fa {{ $category->icon_class }} category-menu-icon"></i> -->
+                                    {{ $category->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-grid gap-2">
+                            @if (Auth::check() && !Auth::user()->hasRole('instructor') && !Auth::user()->hasRole('admin'))
+                                <button>
+                                    <span class="become-instructor text-primary" href="{{ route('login') }}" data-toggle="modal"
+                                        data-target="#myModal">Become Instructor
+                                    </span>
+                                </button>
+                            @endif
                         </div>
                     </li>
                 </ul>
-                <form class="d-flex my-2 my-lg-0">
-                    <input class="form-control me-sm-2" type="text" placeholder="Search" />
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                        Search
-                    </button>
-                </form>
+                <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
+                    @guest
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                            onclick="window.location.href='{{ route('login') }}'">
+                            Login
+                        </button>
+                    @else
+                        <div class="dropdown float-xl-left float-sm-right float-right mt-3">
+                            <span id="dropdownMenuButtonRight" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
+                                    class="fa fa-caret-down"></i></span>
+
+                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
+
+                                @if (Auth::user()->hasRole('instructor'))
+                                    <a class="dropdown-item" href="{{ route('instructor.dashboard') }}">
+                                        <i class="fa fa-sign-out-alt"></i> Instructor
+                                    </a>
+                                @endif
+
+                                @if (Auth::user()->hasRole('admin'))
+                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
+                                        <i class="fa fa-sign-out-alt"></i> Admin
+                                    </a>
+                                @endif
+
+                                @if (Auth::user()->hasRole('student'))
+                                    <a class="dropdown-item" href="{{ route('student.dashboard') }}">
+                                        <i class="fa fa-sign-out-alt"></i> Student
+                                    </a>
+                                @endif
+
+                                <a class="dropdown-item" href="{{ route('my.courses') }}">
+                                    <i class="fa fa-sign-out-alt"></i> My Courses
+                                </a>
+
+                                <a class="dropdown-item" href="{{ route('logOut') }}">
+                                    <i class="fa fa-sign-out-alt"></i> Logout
+                                </a>
+
+                            </div>
+                        </div>
+                    @endguest
+                </div>
             </div>
         </div>
     </nav>
+    {{-- End Navbar --}}
 
+    <div class="se-pre-con"></div>
 
     <!-- Header -->
 
-    <nav class="navbar navbar-default" style="background-color:#427D9D;">
-        <div class="row" style="flex-grow: 1;">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
-                <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
-                <a href="{{ route('home') }}" class="float-xl-right"><img
-                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="49" />Uni-Learn</a>
-            </div>
-            <div class="col-md-3 col-lg-6 col-xl-6 d-flex d-md-block mt-3 ml-5" style="color:#164863;">
-                <div class="dropdown float-left">
-                    <span id="dropdownMenuButton" data-toggle="dropdown" style="color:#DDF2FD;">Categories<i
-                            class="fa fa-caret-down"></i></span>
-                    <?php 
-                        $categories = SiteHelpers::active_categories();
-                    ?>
-                    <div class="dropdown-menu">
-                        @foreach ($categories as $category)
-                        <a class="dropdown-item" href="{{ route('course.list','category_id[]='.$category->id) }}">
-                            <!-- <i class="fa {{ $category->icon_class }} category-menu-icon"></i> -->
-                            {{ $category->name}}
-                        </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-2 col-md-3 col-lg-2 col-xl-2 d-flex d-sm-block mt-3">
-                @if(Auth::check() && !Auth::user()->hasRole('instructor') && !Auth::user()->hasRole('admin'))
-                <button class=" become button2">
-                    <span class="become-instructor" href="{{ route('login') }}" data-toggle="modal"
-                        data-target="#myModal">Become Instructor
-                    </span>
-                </button>
-                @endif
-            </div>
-
-            <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
-                @guest
-
-                <a class="button-lgn button2 mt-2" href="{{ route('login') }}" style="border-radius: 8px;">Login</a>
-
-                @else
-                <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                    <span id="dropdownMenuButtonRight" data-toggle="dropdown" style="color:white;">{{
-                        Auth::user()->first_name }}<i class="fa fa-caret-down"></i></span>
-
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
-
-                        @if(Auth::user()->hasRole('instructor'))
-                        <a class="dropdown-item" href="{{ route('instructor.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Instructor
-                        </a>
-                        @endif
-
-                        @if(Auth::user()->hasRole('admin'))
-                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Admin
-                        </a>
-                        @endif
-
-                        @if(Auth::user()->hasRole('student'))
-                        <a class="dropdown-item" href="{{ route('student.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Student
-                        </a>
-                        @endif
-
-
-                        <a class="dropdown-item" href="{{ route('my.courses') }}">
-                            <i class="fa fa-sign-out-alt"></i> My Courses
-                        </a>
-
-                        <a class="dropdown-item" href="{{ route('logOut') }}">
-                            <i class="fa fa-sign-out-alt"></i> Logout
-                        </a>
-
-                    </div>
-                </div>
-
-                @endguest
-            </div>
-        </div>
-    </nav>
 
     <div id="sidebar">
         <ul>
             <li><a href="javascript:void(0)" class="sidebar-title">Categories</a></li>
             @foreach ($categories as $category)
-            <li>
-                <a href="{{ $category->slug }}">
-                    <i class="fa {{ $category->icon_class }} category-menu-icon"></i>
-                    {{ $category->name}}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ $category->slug }}">
+                        <i class="fa {{ $category->icon_class }} category-menu-icon"></i>
+                        {{ $category->name }}
+                    </a>
+                </li>
             @endforeach
         </ul>
     </div>
@@ -246,11 +230,12 @@
                 <ul>
                     <li class="mb-1"><b>Top Categories</b></li>
                     @foreach ($categories as $category)
-                    @if($loop->iteration <= 4) <li><a
-                            href="{{ route('course.list','category_id[]='.$category->id) }}">{{ $category->name}}</a>
-                        </li>
+                        @if ($loop->iteration <= 4)
+                            <li><a
+                                    href="{{ route('course.list', 'category_id[]=' . $category->id) }}">{{ $category->name }}</a>
+                            </li>
                         @endif
-                        @endforeach
+                    @endforeach
 
                 </ul>
             </div>
@@ -307,20 +292,26 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>First Name</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="First Name"
-                                            name="first_name">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="First Name" name="first_name">
                                     </div>
                                     <div class="col-6">
                                         <label>Last Name</label>
-                                        <input type="text" class="form-control form-control-sm" placeholder="Last Name"
-                                            name="last_name">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="Last Name" name="last_name">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Contact Email</label>
-                                <input type="text" class="form-control form-control-sm" placeholder="Contact Email"
-                                    name="contact_email">
+                                <input type="text" class="form-control form-control-sm"
+                                    placeholder="Contact Email" name="contact_email">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Alternative Email</label>
+                                <input type="text" class="form-control form-control-sm"
+                                    placeholder="Alternative Email" name="paypal_id">
                             </div>
 
                             <div class="form-group">
@@ -331,8 +322,7 @@
 
                             <div class="form-group">
                                 <label>Biography</label>
-                                <textarea class="form-control form-control" placeholder="Biography"
-                                    name="biography"></textarea>
+                                <textarea class="form-control form-control" placeholder="Biography" name="biography"></textarea>
                             </div>
 
                             <div class="form-group mt-4">
@@ -360,15 +350,15 @@
 
 
 <script>
-    $(window).on("load", function (e) {
+    $(window).on("load", function(e) {
         // Animate loader off screen
         $(".se-pre-con").fadeOut("slow");
     });
 </script>
 <script type="text/javascript">
-    $(document).ready(function () {
+    $(document).ready(function() {
         /* Delete record */
-        $('.delete-record').click(function (event) {
+        $('.delete-record').click(function(event) {
             var url = $(this).attr('href');
             event.preventDefault();
 
@@ -383,20 +373,20 @@
         /* Toastr messages */
         toastr.options.closeButton = true;
         toastr.options.timeOut = 5000;
-        @if (session() -> has('success'))
+        @if (session()->has('success'))
             toastr.success("{{ session('success') }}");
         @endif
-        @if (session() -> has('status'))
+        @if (session()->has('status'))
             toastr.success("{{ session('status') }}");
         @endif
-        @if (session() -> has('error'))
+        @if (session()->has('error'))
             toastr.error("{{ session('error') }}");
         @endif
-        @if (session() -> has('info'))
+        @if (session()->has('info'))
             toastr.info("{{ session('info') }}");
         @endif
 
-        $('.mobile-nav').click(function () {
+        $('.mobile-nav').click(function() {
             $('#sidebar').toggleClass('active');
 
             $(this).toggleClass('fa-bars');
@@ -452,5 +442,3 @@
     });
 </script>
 @yield('javascript')
-
-</html>

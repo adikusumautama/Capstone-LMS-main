@@ -28,7 +28,7 @@ class StudentController extends Controller
 {
     public function viewProfile()
     {
-        
+
         return view('student.profile.profil');
     }
     public function withdrawRequests($user_id = '', Request $request)
@@ -55,16 +55,6 @@ class StudentController extends Controller
         $withdraw_request->save();
 
         return $this->return_output('flash', 'success', 'Withdraw request approved successfully', 'back', '200');
-    }
-    public function viewDashboard()
-    {
-        $courses = DB::table('courses')
-            ->select('courses.*', 'categories.name as category_name', 'instructors.first_name as instructor_name')
-            ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
-            ->leftJoin('instructors', 'instructors.id', '=', 'courses.instructor_id')
-            ->paginate(5);
-        $metrics = Instructor::admin_metrics();
-        return view('student.dashboard.student_dashboard', compact('courses', 'metrics'));
     }
     /**
      * Create a new controller instance.
@@ -253,6 +243,115 @@ class StudentController extends Controller
         return view('instructor.withdraw_requests', compact('withdraw_requests'));
     }
 
+    public function viewDashboard($course_slug = '', Request $request)
+    {
+        // INST
+        $instructor_id = \Auth::user()->id;
+        $coursesClass = DB::table('courses')
+            ->select('courses.*', 'categories.name as category_name')
+            ->leftJoin('categories', 'categories.id', '=', 'courses.category_id')
+            ->where('courses.instructor_id', $instructor_id)
+            ->paginate(5);
+        $metrics = Instructor::metrics($instructor_id);
 
+        // INST - Class
+        $query = DB::table('courses')
+            ->select('courses.*', 'instructors.first_name', 'instructors.last_name')
+            ->selectRaw('AVG(course_ratings.rating) AS average_rating')
+            ->leftJoin('course_ratings', 'course_ratings.course_id', '=', 'courses.id')
+            ->join('instructors', 'instructors.id', '=', 'courses.instructor_id')
+            ->where('courses.is_active', 1)->count();
+        // $coursesClassCount = $query->groupBy('courses.id')->paginate($paginate_count);
+        // $coursesClassCount = $query->count();
+
+        // STD
+        $user_id = \Auth::user()->id;
+        $courses = DB::table('courses')
+            ->select('courses.*', 'instructors.first_name', 'instructors.last_name')
+            ->join('instructors', 'instructors.id', '=', 'courses.instructor_id')
+            ->join('course_taken', 'course_taken.course_id', '=', 'courses.id')
+            ->where('course_taken.user_id', $user_id)->count();
+        $coursesTaken = DB::table('courses')
+            ->select('courses.*', 'instructors.first_name', 'instructors.last_name')
+            ->join('instructors', 'instructors.id', '=', 'courses.instructor_id')
+            ->join('course_taken', 'course_taken.course_id', '=', 'courses.id')
+            ->where('course_taken.user_id', $user_id)->get();
+        // ---------------------------------
+        $paginate_count = 9;
+        $categories = Category::where('is_active', 1)->get();
+        $instruction_levels = InstructionLevel::get();
+
+        $category_search = $request->input('category_id');
+        $instruction_level_id = $request->input('instruction_level_id');
+        $prices = $request->input('price_id');
+        $sort_price = $request->input('sort_price');
+        $keyword = $request->input('keyword');
+
+        $kueri = DB::table('courses')
+            ->select('courses.*', 'instructors.first_name', 'instructors.last_name')
+            ->selectRaw('AVG(course_ratings.rating) AS average_rating')
+            ->leftJoin('course_ratings', 'course_ratings.course_id', '=', 'courses.id')
+            ->join('instructors', 'instructors.id', '=', 'courses.instructor_id')
+            ->where('courses.is_active', 1);
+        //filter categories as per user selected                
+        if ($category_search) {
+            $kueri->whereIn('courses.category_id', $category_search);
+        }
+        //filter courses as per keyword
+        if ($keyword) {
+            $kueri->where('courses.course_title', 'LIKE', '%' . $keyword . '%');
+        }
+
+        //filter instruction levels as per user selected                
+        if ($instruction_level_id) {
+            $kueri->whereIn('courses.instruction_level_id', $instruction_level_id);
+        }
+
+        //filter price as per user selected
+        if ($prices) {
+            $price_count = count($prices);
+            $is_greater_500 = false;
+            // echo $price_count;exit;
+            foreach ($prices as $p => $price) {
+                $p++;
+                $price_split = explode('-', $price);
+
+                if ($price_count == 1) {
+                    $from = $price_split[0];
+                    if ($price == 500) {
+                        $is_greater_500 = true;
+                    } else {
+                        $to = $price_split[1];
+                    }
+
+                } elseif ($p == 1) {
+                    $from = $price_split[0];
+                } elseif ($p == $price_count) {
+
+                    if ($price == 500) {
+                        $is_greater_500 = true;
+                    } else {
+                        $to = $price_split[1];
+                    }
+
+                }
+
+            }
+            $kueri->where('courses.price', '>=', $from);
+            if (!$is_greater_500) {
+                $kueri->where('courses.price', '<=', $to);
+            }
+        }
+
+
+        //filter categories as per user selected                
+        if ($sort_price) {
+            $kueri->orderBy('courses.price', $sort_price);
+        }
+
+        $kursus = $kueri->groupBy('courses.id')->paginate($paginate_count);
+
+        return view('student.dashboard.student_dashboard', compact('courses', 'coursesTaken', 'coursesClass', 'metrics', 'query', 'kursus'));
+    }
 
 }
