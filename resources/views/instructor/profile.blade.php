@@ -385,3 +385,4 @@ figure figcaption {
 	});
 </script>
 @endsection
+{{-- Comments --}}

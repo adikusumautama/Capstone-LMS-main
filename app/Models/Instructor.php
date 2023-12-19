@@ -9,6 +9,7 @@ class Instructor extends Model
     protected $table = 'instructors';
     protected $guarded = array();
 
+    // Comments
     
     public function courses()
     {

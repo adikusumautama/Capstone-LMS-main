@@ -112,6 +112,7 @@ class InstructorController extends Controller
         $instructor = Instructor::where('user_id', \Auth::user()->id)->first();
         // echo '<pre>';print_r($instructor);exit;
         return view('instructor.profile', compact('instructor'));
+        // Comments
     }
 
     public function saveProfile(Request $request)
