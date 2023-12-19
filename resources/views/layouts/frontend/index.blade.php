@@ -105,23 +105,20 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#" aria-current="page">Home
+                        <a class="nav-link active" href="{{ route('home') }}" aria-current="page">Home
                             <span class="visually-hidden">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-bs-toggle="dropdown"
+                        <a class="nav-link dropdown-toggle" id="dropdownId" data-bs-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">Categories</a>
                         <?php
                         $categories = SiteHelpers::active_categories();
                         ?>
-                        <div class="dropdown-menu">
+                        <div class="dropdown-menu bg-dark mr-5">
                             @foreach ($categories as $category)
-                                <a class="dropdown-item"
+                                <a class="dropdown-item d-flex justify-content-lg-start mr-5"
                                     href="{{ route('course.list', 'category_id[]=' . $category->id) }}">
-                                    <!-- <i class="fa {{ $category->icon_class }} category-menu-icon"></i> -->
+                                    <i class="fa {{ $category->icon_class }} category-menu-icon px-0 text-light"></i>
                                     {{ $category->name }}
                                 </a>
                             @endforeach
@@ -141,13 +138,13 @@
                 </ul>
                 <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
                     @guest
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"
+                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"
                             onclick="window.location.href='{{ route('login') }}'">
                             Login
                         </button>
                     @else
                         <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                            <span id="dropdownMenuButtonRight" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
+                            <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
                                     class="fa fa-caret-down"></i></span>
 
                             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
@@ -190,91 +187,6 @@
     <div class="se-pre-con"></div>
 
     <!-- Header -->
-
-<<<<<<< HEAD
-=======
-    <nav class="navbar navbar-default" style="background-color:#427D9D;">
-        <div class="row" style="flex-grow: 1;">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
-                <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
-                <a href="{{ route('home') }}" class="float-xl-right"><img
-                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="49" />Uni-Learn</a>
-            </div>
-            <div class="col-md-3 col-lg-6 col-xl-6 d-flex d-md-block mt-3 ml-5" style="color:#164863;">
-                <div class="dropdown float-left">
-                    <span id="dropdownMenuButton" data-toggle="dropdown" style="color:#DDF2FD;">Categories<i
-                            class="fa fa-caret-down"></i></span>
-                    <?php 
-                        $categories = SiteHelpers::active_categories();
-                    ?>
-                    <div class="dropdown-menu">
-                        @foreach ($categories as $category)
-                        <a class="dropdown-item" href="{{ route('course.list','category_id[]='.$category->id) }}">
-                            <!-- <i class="fa {{ $category->icon_class }} category-menu-icon"></i> -->
-                            {{ $category->name}}
-                        </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-sm-2 col-md-3 col-lg-2 col-xl-2 d-flex d-sm-block mt-3">
-                @if(Auth::check() && !Auth::user()->hasRole('instructor') && !Auth::user()->hasRole('admin'))
-                <button class=" become button2">
-                    <span class="become-instructor" href="{{ route('login') }}" data-toggle="modal"
-                        data-target="#myModal">Become Instructor
-                    </span>
-                </button>
-                @endif
-            </div>
-
-            <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
-                @guest
-
-                <a class="button-lgn button2 mt-2" href="{{ route('login') }}" style="border-radius: 8px;">Login</a>
-
-                @else
-                <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                    <span id="dropdownMenuButtonRight" data-toggle="dropdown" style="color:white;">{{
-                        Auth::user()->first_name }}<i class="fa fa-caret-down"></i></span>
-
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
-
-                        @if(Auth::user()->hasRole('instructor'))
-                        <a class="dropdown-item" href="{{ route('instructor.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Instructor
-                        </a>
-                        @endif
-
-                        @if(Auth::user()->hasRole('admin'))
-                        <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Admin
-                        </a>
-                        @endif
-
-                        @if(Auth::user()->hasRole('student'))
-                        <a class="dropdown-item" href="{{ route('std.dashboard') }}">
-                            <i class="fa fa-sign-out-alt"></i> Student
-                        </a>
-                        @endif
-
-
-                        <a class="dropdown-item" href="{{ route('my.courses') }}">
-                            <i class="fa fa-sign-out-alt"></i> My Courses
-                        </a>
-
-                        <a class="dropdown-item" href="{{ route('logOut') }}">
-                            <i class="fa fa-sign-out-alt"></i> Logout
-                        </a>
-
-                    </div>
-                </div>
-
-                @endguest
-            </div>
-        </div>
-    </nav>
->>>>>>> 9b6b3b7694f71781810b413fbede013d76d3e4c0
 
     <div id="sidebar">
         <ul>
