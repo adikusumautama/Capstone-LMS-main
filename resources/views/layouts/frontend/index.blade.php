@@ -206,12 +206,12 @@
                         Login
                     </button>
                     @else
-                    <div class="dropdown float-xl-left float-sm-right float-right mt-3">
+                    <div class="dropdown  mt-3 mr-2">
                         <span id="dropdownMenuButton" data-toggle="dropdown" style="color:#FFFFFF;">{{ Auth::user()->first_name }}
                             <i class="fa fa-caret-down"></i>
                         </span>
 
-                        <div class="dropdown-menu bg-dark dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
+                        <div class="dropdown-menu bg-dark dropdown-menu-right" aria-labelledby="dropdownMenuButtonLeft">
 
                             @if (Auth::user()->hasRole('instructor'))
                             <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('instructor.dashboard') }}">
