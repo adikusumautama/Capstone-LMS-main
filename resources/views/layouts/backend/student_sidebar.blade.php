@@ -98,6 +98,12 @@
                         <span class="site-menu-title">My Class</span>
                     </a>
                 </li>
+                <li class="site-menu-item {{ request()->is('logout*') ? 'active' : '' }}">
+                    <a href="{{ route('home') }}">
+                        <i class="site-menu-icon bi bi-house-door-fill" aria-hidden="true"></i>
+                        <span class="site-menu-title">Go To Home</span>
+                    </a>
+                </li>
                 <li>
                     <center>
                         <button class="Btn" style="margin-top:40px;">

@@ -1,11 +1,31 @@
-@extends('layouts.frontend.index')
+@extends('layouts.backend.my')
 @section('content')
+<style>
+    .button-lgn {
+            background-color: #164863;
+            border-radius:8px;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .button-lgn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+</style>
 <!-- content start -->
 <div class="container-fluid p-0 home-content">
     <!-- banner start -->
-    <div class="subpage-slide-blue">
+    <div class="subpage-slide-blue" style="bakcground-color:#427D9D;">
         <div class="container">
-            <h1>Course</h1>
+            <h1>KELAS</h1>
         </div>
     </div>
     <!-- banner end -->
@@ -60,15 +80,17 @@
                             </div>
                         </div>
 
-                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
+                        <!-- <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 col-6">
                             <div class="cv-category-detail cv-price">
                             	@php $course_price = $course->price ? $course->price : '0.00'; @endphp
                                 <h4>{{  config('config.default_currency').$course_price }}</h4>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-xl-3 col-lg-3 col-md-6 float-md-right col-sm-6 float-sm-right col-6">
                             <div class="cv-category-detail cv-enroll float-lg-right float-md-right float-sm-right">
-                                <a href="{{ route('course.checkout', $course->course_slug) }}" class="btn btn-ulearn-cview mt-1">ENROLL COURSE</a>
+                                <button class="button-lgn">
+                                    <a href="{{ route('course.checkout', $course->course_slug) }}" style="color:white;">DAFTAR KELAS</a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -204,10 +226,10 @@
                         <h6>COURSE FEATURES</h6>
                     </header>
 
-                    <div class="cf-pricing">
+                    <!-- <div class="cf-pricing">
                         <span>PRICING:</span>
                         <button class="cf-pricing-btn btn">{{ $course->price ? 'PAID' : 'FREE' }}</button>
-                    </div>
+                    </div> -->
 
                     <ul class="list-unstyled cf-pricing-li">
                         <li><i class="far fa-user"></i>40 Students</li>

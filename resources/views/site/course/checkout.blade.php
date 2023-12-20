@@ -1,5 +1,27 @@
-@extends('layouts.frontend.index')
+@extends('layouts.backend.my')
 @section('content')
+<style>
+    .button-lgn {
+            color:white;
+            background-color: #164863;
+            border-radius:8px;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .button-lgn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color:black;
+        }
+</style>
  <!-- content start -->
     <div class="container-fluid p-0 home-content">
         <!-- banner start -->
@@ -28,7 +50,7 @@
         <article class="container mt-4">
             <div class="row">
                <div class="col-xl-7 offset-xl-3 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
-                    <h6 class="underline-heading mb-4">Confirm Purchase</h6>
+                    <h6 class="underline-heading mb-4">Konfirmasi Kelas</h6>
                     
                     
                     <div class="row mb-1">
@@ -64,18 +86,14 @@
                     <input type="hidden" name="course_title" value="{{ $course->course_title }}">
 
                     <div class="form-group mt-4">
-                        <button type="submit" class="btn btn-lg btn-block social-btn facebook-btn">
+                        <button type="submit" class="btn btn-lg btn-block button-lgn">
                             <div class="row">
                                 <div class="col-3">
-                                    <i class="@if($course->price == 0.00) fas fa-cart-arrow-down @else fab fa-paypal  @endif float-right"></i>
+                                    <i class="bi bi-rocket-takeoff-fill" style="color:3559E0;"></i>
                                 </div>
-                                <div class="col-9">
+                                <div class="col-8">
                                     <span>
-                                    @if($course->price == 0.00)
-                                    Subscribe to the course
-                                    @else
-                                    Pay with Paypal Account
-                                    @endif
+                                    AMBIL KELAS INI
                                     </span>
                                 </div>
                             </div>

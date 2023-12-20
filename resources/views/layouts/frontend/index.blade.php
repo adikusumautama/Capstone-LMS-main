@@ -66,7 +66,7 @@
             transition-duration: 0.4s;
         }
 
-        .button2:hover {
+        .button-lgn:hover {
             box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
         }
 
@@ -85,12 +85,73 @@
             transition-duration: 0.4s;
             border-radius: 8px;
         }
+
+        .button3 {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 6px;
+            background: #164863;
+            font-family: "Montserrat", sans-serif;
+            box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            border: none;
+        }
+
+        .button3:after {
+            content: " ";
+            width: 0%;
+            height: 100%;
+            background: #9BBEC8;
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            right: 0;
+        }
+
+        .button3:hover::after {
+            right: auto;
+            left: 0;
+            width: 100%;
+        }
+
+        .button3 span {
+            text-align: center;
+            text-decoration: none;
+            width: 100%;
+            padding: 18px 25px;
+            color: #fff;
+            font-size: 1.125em;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            z-index: 20;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .button3:hover span {
+            color: #183153;
+            animation: scaleUp 0.3s ease-in-out;
+        }
+
+        @keyframes scaleUp {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(0.95);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
     </style>
 </head>
 
 <body>
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-xl navbar-light bg-light">
+    <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top">
         <div class="container">
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
                 <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
@@ -116,67 +177,68 @@
                         ?>
                         <div class="dropdown-menu bg-dark mr-5">
                             @foreach ($categories as $category)
-                                <a class="dropdown-item d-flex justify-content-lg-start mr-5"
-                                    href="{{ route('course.list', 'category_id[]=' . $category->id) }}">
-                                    <i class="fa {{ $category->icon_class }} category-menu-icon px-0 text-light"></i>
-                                    {{ $category->name }}
-                                </a>
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5"
+                                href="{{ route('course.list', 'category_id[]=' . $category->id) }}">
+                                <i class="fa {{ $category->icon_class }} category-menu-icon px-0 text-light"></i>
+                                {{ $category->name }}
+                            </a>
                             @endforeach
                         </div>
                     </li>
                     <li>
-                        <div class="d-grid gap-2">
-                            @if (Auth::check() && !Auth::user()->hasRole('instructor') && !Auth::user()->hasRole('admin'))
-                                <button>
-                                    <span class="become-instructor text-primary" href="{{ route('login') }}" data-toggle="modal"
-                                        data-target="#myModal">Become Instructor
-                                    </span>
-                                </button>
+                        <div class="d-grid gap-2 ml-4">
+                            @if (Auth::check() && !Auth::user()->hasRole('instructor') &&
+                            !Auth::user()->hasRole('admin'))
+                            <button class="button3">
+                                <span href="{{ route('login') }}"
+                                    data-toggle="modal" data-target="#myModal">Become Instructor
+                                </span>
+                            </button>
                             @endif
                         </div>
                     </li>
                 </ul>
                 <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
                     @guest
-                        <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"
-                            onclick="window.location.href='{{ route('login') }}'">
-                            Login
-                        </button>
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"
+                        onclick="window.location.href='{{ route('login') }}'">
+                        Login
+                    </button>
                     @else
-                        <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                            <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
-                                    class="fa fa-caret-down"></i></span>
+                    <div class="dropdown float-xl-left float-sm-right float-right mt-3">
+                        <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
+                                class="fa fa-caret-down"></i></span>
 
-                            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
+                        <div class="dropdown-menu bg-dark dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft" style="background-color:#427D9D;">
 
-                                @if (Auth::user()->hasRole('instructor'))
-                                    <a class="dropdown-item" href="{{ route('instructor.dashboard') }}">
-                                        <i class="fa fa-sign-out-alt"></i> Instructor
-                                    </a>
-                                @endif
+                            @if (Auth::user()->hasRole('instructor'))
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('instructor.dashboard') }}">
+                            <i class="bi bi-speedometer2" style="color:#3559E0">Dashboard
+                            </a>
+                            @endif
 
-                                @if (Auth::user()->hasRole('admin'))
-                                    <a class="dropdown-item" href="{{ route('admin.dashboard') }}">
-                                        <i class="fa fa-sign-out-alt"></i> Admin
-                                    </a>
-                                @endif
+                            @if (Auth::user()->hasRole('admin'))
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('admin.dashboard') }}">
+                            <i class="bi bi-speedometer2 mr-3" style="color:#3559E0">Dashboard
+                            </a>
+                            @endif
 
-                                @if (Auth::user()->hasRole('student'))
-                                    <a class="dropdown-item" href="{{ route('student.dashboard') }}">
-                                        <i class="fa fa-sign-out-alt"></i> Student
-                                    </a>
-                                @endif
+                            @if (Auth::user()->hasRole('student'))
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('student.dashboard') }}">
+                            <i class="bi bi-speedometer2 mr-3" style="color:#3559E0"></i>Dashboard
+                            </a>
+                            @endif
 
-                                <a class="dropdown-item" href="{{ route('my.courses') }}">
-                                    <i class="fa fa-sign-out-alt"></i> My Courses
-                                </a>
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('my.courses') }}">
+                            <i class="bi bi-collection mr-3" style="color:#3559E0"></i>My Courses
+                            </a>
 
-                                <a class="dropdown-item" href="{{ route('logOut') }}">
-                                    <i class="fa fa-sign-out-alt"></i> Logout
-                                </a>
+                            <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('logOut') }}">
+                                <i class="fa fa-sign-out-alt mr-3" style="color:#3559E0"></i>Logout
+                            </a>
 
-                            </div>
                         </div>
+                    </div>
                     @endguest
                 </div>
             </div>
@@ -192,12 +254,12 @@
         <ul>
             <li><a href="javascript:void(0)" class="sidebar-title">Categories</a></li>
             @foreach ($categories as $category)
-                <li>
-                    <a href="{{ $category->slug }}">
-                        <i class="fa {{ $category->icon_class }} category-menu-icon"></i>
-                        {{ $category->name }}
-                    </a>
-                </li>
+            <li>
+                <a href="{{ $category->slug }}">
+                    <i class="fa {{ $category->icon_class }} category-menu-icon"></i>
+                    {{ $category->name }}
+                </a>
+            </li>
             @endforeach
         </ul>
     </div>
@@ -226,12 +288,12 @@
                 <ul>
                     <li class="mb-1"><b>Top Categories</b></li>
                     @foreach ($categories as $category)
-                        @if ($loop->iteration <= 4)
-                            <li><a
-                                    href="{{ route('course.list', 'category_id[]=' . $category->id) }}">{{ $category->name }}</a>
-                            </li>
+                    @if ($loop->iteration <= 4) <li><a
+                            href="{{ route('course.list', 'category_id[]=' . $category->id) }}">{{ $category->name
+                            }}</a>
+                        </li>
                         @endif
-                    @endforeach
+                        @endforeach
 
                 </ul>
             </div>
@@ -288,26 +350,26 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <label>First Name</label>
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="First Name" name="first_name">
+                                        <input type="text" class="form-control form-control-sm" placeholder="First Name"
+                                            name="first_name">
                                     </div>
                                     <div class="col-6">
                                         <label>Last Name</label>
-                                        <input type="text" class="form-control form-control-sm"
-                                            placeholder="Last Name" name="last_name">
+                                        <input type="text" class="form-control form-control-sm" placeholder="Last Name"
+                                            name="last_name">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label>Contact Email</label>
-                                <input type="text" class="form-control form-control-sm"
-                                    placeholder="Contact Email" name="contact_email">
+                                <input type="text" class="form-control form-control-sm" placeholder="Contact Email"
+                                    name="contact_email">
                             </div>
 
                             <div class="form-group">
                                 <label>Alternative Email</label>
-                                <input type="text" class="form-control form-control-sm"
-                                    placeholder="Alternative Email" name="paypal_id">
+                                <input type="text" class="form-control form-control-sm" placeholder="Alternative Email"
+                                    name="paypal_id">
                             </div>
 
                             <div class="form-group">
@@ -318,7 +380,8 @@
 
                             <div class="form-group">
                                 <label>Biography</label>
-                                <textarea class="form-control form-control" placeholder="Biography" name="biography"></textarea>
+                                <textarea class="form-control form-control" placeholder="Biography"
+                                    name="biography"></textarea>
                             </div>
 
                             <div class="form-group mt-4">
@@ -346,15 +409,15 @@
 
 
 <script>
-    $(window).on("load", function(e) {
+    $(window).on("load", function (e) {
         // Animate loader off screen
         $(".se-pre-con").fadeOut("slow");
     });
 </script>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         /* Delete record */
-        $('.delete-record').click(function(event) {
+        $('.delete-record').click(function (event) {
             var url = $(this).attr('href');
             event.preventDefault();
 
@@ -369,20 +432,20 @@
         /* Toastr messages */
         toastr.options.closeButton = true;
         toastr.options.timeOut = 5000;
-        @if (session()->has('success'))
+        @if (session() -> has('success'))
             toastr.success("{{ session('success') }}");
         @endif
-        @if (session()->has('status'))
+        @if (session() -> has('status'))
             toastr.success("{{ session('status') }}");
         @endif
-        @if (session()->has('error'))
+        @if (session() -> has('error'))
             toastr.error("{{ session('error') }}");
         @endif
-        @if (session()->has('info'))
+        @if (session() -> has('info'))
             toastr.info("{{ session('info') }}");
         @endif
 
-        $('.mobile-nav').click(function() {
+        $('.mobile-nav').click(function () {
             $('#sidebar').toggleClass('active');
 
             $(this).toggleClass('fa-bars');

@@ -21,6 +21,12 @@
                 <span class="site-menu-title">Categories</span>
             </a>
         </li>
+        <li class="site-menu-item {{ request()->is('logout*') ? 'active' : '' }}">
+          <a href="{{ route('home') }}">
+            <i class="site-menu-icon bi bi-house-door-fill" aria-hidden="true"></i>
+            <span class="site-menu-title">Go To Home</span>
+          </a>
+        </li>
         <!-- <li class="site-menu-item {{ request()->is('admin/withdraw-requests') ? 'active' : '' }}">
             <a href="{{ route('admin.withdraw.requests') }}">
                 <i class="site-menu-icon fas fa-hand-holding-usd" aria-hidden="true"></i>

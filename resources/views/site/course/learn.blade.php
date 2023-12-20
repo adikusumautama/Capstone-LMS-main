@@ -1,4 +1,4 @@
-@extends('layouts.frontend.index')
+@extends('layouts.backend.my')
 @section('content')
 <link rel="stylesheet" href="{{ asset('frontend/vendor/rating/rateyo.css') }}">
 <!-- content start -->

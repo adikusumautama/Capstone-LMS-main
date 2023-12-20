@@ -20,6 +20,12 @@
                 <span class="site-menu-title">Kelas</span>
             </a>
         </li>
+        <li class="site-menu-item {{ request()->is('logout*') ? 'active' : '' }}">
+            <a href="{{ route('home') }}">
+                <i class="site-menu-icon bi bi-house-door-fill" aria-hidden="true"></i>
+                <span class="site-menu-title">Go To Home</span>
+            </a>
+        </li>
         <!-- <li class="site-menu-item {{ request()->is('instructor-credits') ? 'active' : '' }}">
             <a href="{{ route('instructor.credits') }}">
                 <i class="site-menu-icon fas fa-hand-holding-usd" aria-hidden="true"></i>
