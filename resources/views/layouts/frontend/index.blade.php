@@ -53,7 +53,7 @@
         .fa-anchor,.fa-coffee {font-size:200px} */
         .button-lgn {
             background-color: #164863;
-            border: none;
+            border-radius: 9px;;
             color: white;
             padding: 15px 32px;
             text-align: center;
@@ -201,7 +201,7 @@
                 </ul>
                 <div class="col-4 col-sm-3 col-md-2 col-lg-2 col-xl-1">
                     @guest
-                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit"
+                    <button class="button-lgn my-2 my-sm-0" type="submit"
                         onclick="window.location.href='{{ route('login') }}'">
                         Login
                     </button>
