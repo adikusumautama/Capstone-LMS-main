@@ -154,10 +154,10 @@
     {{-- Navbar --}}
     <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top">
         <div class="container">
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto" id="logo">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto  mb-0" id="logo">
                 <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
                 <a href="{{ route('home') }}" class="float-xl-right text-dark"><img
-                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="49" />Uni-Learn</a>
+                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="51" >Uni-Learn</a>
             </div>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
