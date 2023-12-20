@@ -206,20 +206,21 @@
                     </button>
                     @else
                     <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                        <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}<i
-                                class="fa fa-caret-down"></i></span>
+                        <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}
+                            <i class="fa fa-caret-down"></i>
+                        </span>
 
-                        <div class="dropdown-menu bg-dark dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft" style="background-color:#427D9D;">
+                        <div class="dropdown-menu bg-dark dropdown-menu-left" aria-labelledby="dropdownMenuButtonLeft">
 
                             @if (Auth::user()->hasRole('instructor'))
                             <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('instructor.dashboard') }}">
-                            <i class="bi bi-speedometer2" style="color:#3559E0">Dashboard
+                            <i class="bi bi-speedometer2 mr-3" style="color:#3559E0"></i>Dashboard
                             </a>
                             @endif
 
                             @if (Auth::user()->hasRole('admin'))
                             <a class="dropdown-item d-flex justify-content-lg-start mr-5" href="{{ route('admin.dashboard') }}">
-                            <i class="bi bi-speedometer2 mr-3" style="color:#3559E0">Dashboard
+                            <i class="bi bi-speedometer2 mr-3" style="color:#3559E0"></i>Dashboard
                             </a>
                             @endif
 
