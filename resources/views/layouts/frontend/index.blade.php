@@ -152,12 +152,12 @@
 
 <body>
     {{-- Navbar --}}
-    <nav class="navbar navbar-expand-xl navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-xl navbar-light fixed-top" style="background-color:#427D9D;">
         <div class="container">
             <div class="col-6 col-sm-4 col-md-3 col-lg-2 col-xl-2 mt-auto  mb-0" id="logo">
                 <i class="fa fa-bars d-inline-block d-md-none mobile-nav"></i>
-                <a href="{{ route('home') }}" class="float-xl-right text-dark"><img
-                        src="{{ asset('frontend/img/logo-hitam.png') }}" width="51" >Uni-Learn</a>
+                <a href="{{ route('home') }}" class="float-xl-right" style="color:#FFFFFF;"><img
+                        src="{{ asset('frontend/img/logo-putih.png') }}" width="51">Uni-Learn</a>
             </div>
             <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -167,12 +167,12 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="{{ route('home') }}" aria-current="page">Home
+                        <a class="nav-link active" href="{{ route('home') }}" aria-current="page" style="color:#FFFFFF;">Home
                             <span class="visually-hidden">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="dropdownId" data-bs-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">Categories</a>
+                            aria-haspopup="true" aria-expanded="false" style="color:#FFFFFF;">Categories</a>
                         <?php
                         $categories = SiteHelpers::active_categories();
                         ?>
@@ -180,7 +180,7 @@
                             @foreach ($categories as $category)
                             <a class="dropdown-item d-flex justify-content-lg-start mr-5"
                                 href="{{ route('course.list', 'category_id[]=' . $category->id) }}">
-                                <i class="fa {{ $category->icon_class }} category-menu-icon px-0 text-light"></i>
+                                <i class="fa {{ $category->icon_class }} mr-3" style="color:#3559E0;"></i>
                                 {{ $category->name }}
                             </a>
                             @endforeach
@@ -207,7 +207,7 @@
                     </button>
                     @else
                     <div class="dropdown float-xl-left float-sm-right float-right mt-3">
-                        <span id="dropdownMenuButton" data-toggle="dropdown">{{ Auth::user()->first_name }}
+                        <span id="dropdownMenuButton" data-toggle="dropdown" style="color:#FFFFFF;">{{ Auth::user()->first_name }}
                             <i class="fa fa-caret-down"></i>
                         </span>
 
