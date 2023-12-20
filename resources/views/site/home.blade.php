@@ -356,13 +356,13 @@
           <div class="member d-flex align-items-start">
             <div class="pic"><img src="/img/team/Fadilah.png" class="img-fluid" alt=""></div>
             <div class="member-info">
-              <h4>Fadhillah Pengendali Angin</h4>
-              <span>CTO</span>
-              <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
+              <h4>Fadhilah Bimantoro</h4>
+              <span>Anggota</span>
+              <p>Manusia Tidak Perlu Kata Mutiara</p>
               <div class="social">
                 <a href=""><i class="ri-twitter-fill"></i></a>
                 <a href=""><i class="ri-facebook-fill"></i></a>
-                <a href=""><i class="ri-instagram-fill"></i></a>
+                <a href="https://www.instagram.com/fbimant11/"><i class="ri-instagram-fill"></i></a>
                 <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
               </div>
             </div>
