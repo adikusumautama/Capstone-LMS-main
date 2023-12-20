@@ -110,6 +110,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('instructor-course-curriculum/{course_id}', 'CourseController@instructorCourseCurriculum')->name('instructor.course.curriculum.edit');
         Route::post('instructor-course-curriculum-save', 'CourseController@instructorCourseCurriculumSave')->name('instructor.course.curriculum.save');
 
+        Route::get('instructor-course-delete/{course_id}', 'CourseController@deleteCourse')->name('instructor.course.delete');
 
         Route::get('instructor-credits', 'InstructorController@credits')->name('instructor.credits');
 

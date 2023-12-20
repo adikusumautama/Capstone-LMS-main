@@ -1138,4 +1138,10 @@ if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {               $ffmpeg_path = b
         echo $vidoes->video_title;exit();
     }
     /* Curriculum end */
+
+    public function deleteCourse($id)
+    {
+        DB::table('courses')->where('id', $id)->delete();
+        return redirect('instructor-course-list')->with(['success' => 'Deleted Successfully']);
+    }
 }
