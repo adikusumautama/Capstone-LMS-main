@@ -172,8 +172,8 @@
 
         <div class="row">
           <div class="col-lg-9 text-center text-lg-start">
-            <h3>Call To Action</h3>
-            <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <h3>Ayo Bergabung dalam Dunia Programming</h3>
+            <p> Nikmati perjalanan belajar pemrograman yang penuh tantangan, di mana setiap kode yang kita tulis membuka pintu baru menuju pengetahuan yang mendalam. Bersama-sama, kita bangun keterampilan yang memungkinkan kita untuk menciptakan teknologi masa depan.</p>
           </div>
           <!-- <div class="col-lg-3 cta-btn-container text-center">
             <a class="cta-btn align-middle" href="#">Call To Action</a>
@@ -392,8 +392,8 @@
               <div class="pic"><img src="/img/team/Seiya.png" class="img-fluid" alt=""></div>
               <div class="member-info">
                 <h4>Super Seiya</h4>
-                <span>Chief Executive Officer</span>
-                <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                <span>Team Member Projects</span>
+                <p>Bangun dan Semangat</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
                   <a href=""><i class="ri-facebook-fill"></i></a>
