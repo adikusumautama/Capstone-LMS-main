@@ -391,7 +391,7 @@
           <div class="member d-flex align-items-start">
             <div class="pic"><img src="/img/team/Seiya.png" class="img-fluid" alt=""></div>
             <div class="member-info">
-              <h4>Super Seiya</h4>
+              <h4>Seiya Inzu Saputra</h4>
               <span>Team Member Projects</span>
               <p>Bangun dan Semangat</p>
               <div class="social">
