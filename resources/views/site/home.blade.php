@@ -188,8 +188,8 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Portfolio</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+          <h2>Portofolio</h2>
+          <p>Pada proyek ini, kami membuat sebuah Learning Management System (LMS) yang dirancang khusus untuk memfasilitasi proses pembelajaran online. LMS ini menyediakan platform yang intuitif dan responsif untuk memungkinkan pengguna, baik guru maupun siswa, mengakses, mengelola, dan berpartisipasi dalam pembelajaran jarak jauh.</p>
         </div>
 
       <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
