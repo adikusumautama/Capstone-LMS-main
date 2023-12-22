@@ -131,7 +131,7 @@ class CourseController extends Controller
         $file_details = \DB::table('course_files')->where('id', $resource_id)->first();
         $course = \DB::table('courses')->where('course_slug', $slug)->first();
 
-        $file = public_path('storage/course/' . $course->id . '/' . $file_details->file_name . '.' . $file_details->file_extension);
+        $file = public_path('storage/app/public/course/' . $course->id . '/' . $file_details->file_name . '.' . $file_details->file_extension);
         $headers = array(
             'Content-Type: application/pdf',
         );
@@ -499,7 +499,7 @@ class CourseController extends Controller
     {
         $course_id = $request->input('course_id');
 
-        $video = $request->file('course_video');
+        $video = $request->file('course_videos');
 
         $file_tmp_name = $video->getPathName();
         $file_name = explode('.', $video->getClientOriginalName());
@@ -529,10 +529,10 @@ class CourseController extends Controller
         $video_path = $path . '/' . $video_name;
 
         $video_image_name = 'raw_' . $created_at . '_' . $file_name . '.jpg';
-        $video_image_path = storage_path('app/public/' . $path . '/' . $video_image_name);
+        $video_image_path = storage_path('storage/app/public/' . $path . '/' . $video_image_name);
         $ffmpeg->convertImages($video_image_path);
 
-        $request->file('course_video')->storeAs($path, $video_name);
+        $request->file('course_videos')->storeAs($path, $video_name);
 
         $courseVideos = new CourseVideos;
         $courseVideos->video_title = 'raw_' . $created_at . '_' . $file_name;

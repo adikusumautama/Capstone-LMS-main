@@ -1,5 +1,27 @@
 @extends('layouts.backend.my')
 @section('content')
+<style>
+    .button-lgn {
+            color:white;
+            background-color: #164863;
+            border-radius:8px;
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .button-lgn:hover {
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+            color:black;
+        }
+</style>
 <link rel="stylesheet" href="{{ asset('frontend/vendor/rating/rateyo.css') }}">
 <!-- content start -->
 <div class="container-fluid p-0 home-content">
@@ -69,7 +91,7 @@
                         </div>
                         <div class="col-xl-3 col-lg-3 col-md-6 float-md-right col-sm-6 float-sm-right col-6">
                             <div class="cv-category-detail cv-enroll float-lg-right float-md-right float-sm-right">
-                                <a href="javascript::void(0);" class="btn mt-1 button-lgn button2" data-toggle="modal" data-target="#rateModal">RATE COURSE</a>
+                                <a href="javascript::void(0);" class="btn mt-1 button-lgn" data-toggle="modal" data-target="#rateModal">RATE COURSE</a>
                             </div>
                         </div>
                     </div>
@@ -142,9 +164,13 @@
                                         </span>
                                         <a href="{{ url('course-enroll/'.$course->course_slug.'/'.SiteHelpers::encrypt_decrypt($curriculum_lecture->lecture_quiz_id,true)) }}" class="btn btn-ulearn-preview">
                                         @if($is_completed)
-                                        RESTART
+                                        <button class="btn mt-1 button-lgn">
+                                            RESTART
+                                        </button>
                                         @else
-                                        START
+                                        <button class="btn mt-1 button-lgn">
+                                            START
+                                        </button>
                                         @endif
                                         </a>
                                     </article>
