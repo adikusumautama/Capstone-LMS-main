@@ -35,5 +35,4 @@
     var lecture_slug = '{{ Request::segment(3) }}';
 </script>
 <script src="{{ asset('js/app.js') }}"></script>
-
 </html>

@@ -56,7 +56,7 @@ label.cabinet{
                     <div class="video-preview">
                     @if($video)
                       @php
-                        $file_name = 'course/'.$video->course_id.'/'.$video->video_title.'.'.$video->video_type;
+                        $file_name = 'storage/course/'.$video->course_id.'/'.$video->video_title.'.'.$video->video_type;
                       @endphp
                       @if(Storage::exists($file_name))
                         <video width="100%" height="100%" controls preload="auto"><source src="{{ Storage::url($file_name) }}" type="video/mp4"></video>

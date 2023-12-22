@@ -29,7 +29,6 @@ $course_id = $course->id;
 <div class="container">
   <div class="row">  
     
-    
     <div class="col-md-12">
 
       <div class="lach_dev resp-tab-content course_tab"> 
@@ -297,7 +296,11 @@ $course_id = $course->id;
                                       @if($lecturesmedia[$section->section_id][$lecturequiz->lecture_quiz_id][0]->processed == 0)
                                       {!! Lang::get('curriculum.lecture_process') !!}
                                       @else
-                                      <video class='video-js vjs-default-skin video_p_{!! $lecturequiz->lecture_quiz_id !!}' controls preload='auto' data-setup='{}'></video>
+                                      @php
+                                      $file_name = 'storage/course/'.$video->course_id.'/'.$video->video_title.'.'.$video->video_type;
+                                      @endphp
+                                      <video src="{{ asset($file_name) }}" controls></video>
+                                      {{-- <video class='video-js vjs-default-skin video_p_{!! $lecturequiz->lecture_quiz_id !!}' controls preload='auto' data-setup='{}'></video> --}}
                                       <!-- <video class='video-js vjs-default-skin' controls preload='auto' data-setup='{}'><source src="{!! asset('/uploads/videos/'.$lecturesmedia[$section->section_id][$lecturequiz->lecture_quiz_id][0]->video_title.'.mp4') !!}" type="video/mp4" id="videosource"><source src="{!! asset('/uploads/videos/'.$lecturesmedia[$section->section_id][$lecturequiz->lecture_quiz_id][0]->video_title.'.webm') !!}" type="video/webm" id="videosource"><source src="{!! asset('/uploads/videos/'.$lecturesmedia[$section->section_id][$lecturequiz->lecture_quiz_id][0]->video_title.'.ogv') !!}" type="video/ogg" id="videosource"></video> -->
                                       @endif
                                     </div>
