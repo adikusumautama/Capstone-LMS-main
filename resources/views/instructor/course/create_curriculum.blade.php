@@ -121,7 +121,7 @@ $course_id = $course->id;
                       <div class="lecturecontent">
                         <div class="lecture-media">
                           <div class="clearfix">
-                            <!-- <div class="divli lmedia-video" data-lid="{!! $lecturequiz->lecture_quiz_id !!}"  alt="video"><div class="lecturemedia"><span>{!! Lang::get('curriculum.Video')!!}</span></div><label>{!! Lang::get('curriculum.Video')!!}</label><div class="innershadow"></div></div> -->
+                            <div class="divli lmedia-video" data-lid="{!! $lecturequiz->lecture_quiz_id !!}"  alt="video"><div class="lecturemedia"><span>{!! Lang::get('curriculum.Video')!!}</span></div><label>{!! Lang::get('curriculum.Video')!!}</label><div class="innershadow"></div></div>
                             <!-- <div class="divli lmedia-audio" data-lid="{!! $lecturequiz->lecture_quiz_id !!}" alt="audio"><div class="lecturemedia"><span>{!! Lang::get('curriculum.Audio')!!}</span></div><label>{!! Lang::get('curriculum.Audio')!!}</label><div class="innershadow"></div></div> -->
                             <div class="divli lmedia-file" data-lid="{!! $lecturequiz->lecture_quiz_id !!}" alt="file"><div class="lecturemedia"><span>{!! Lang::get('curriculum.Document')!!}</span></div><label>{!! Lang::get('curriculum.Document')!!}</label><div class="innershadow"></div></div>
                             <div class="divli lmedia-text" data-lid="{!! $lecturequiz->lecture_quiz_id !!}" alt="text"><div class="lecturemedia"><span>{!! Lang::get('curriculum.Text')!!}</span></div><label>{!! Lang::get('curriculum.Text')!!}</label><div class="innershadow"></div></div>
@@ -297,7 +297,7 @@ $course_id = $course->id;
                                       {!! Lang::get('curriculum.lecture_process') !!}
                                       @else
                                       @php
-                                      $file_name = 'storage/course/'.$video->course_id.'/'.$video->video_title.'.'.$video->video_type;
+                                      $file_name = 'storage/app/public/course/'.$video->course_id.'/'.$video->video_title.'.'.$video->video_type;
                                       @endphp
                                       <video src="{{ asset($file_name) }}" controls></video>
                                       {{-- <video class='video-js vjs-default-skin video_p_{!! $lecturequiz->lecture_quiz_id !!}' controls preload='auto' data-setup='{}'></video> --}}

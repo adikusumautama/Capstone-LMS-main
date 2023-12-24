@@ -523,7 +523,7 @@ class CourseController extends Controller
         $duration = explode('.', $duration);
         $duration = $duration[0];
         $created_at = time();
-        $path = 'course/' . $course_id;
+        $path = 'storage\app\public/course/' . $course_id;
         $video_name = 'raw_' . $created_at . '_' . $file_name . '.' . $extension;
 
         $video_path = $path . '/' . $video_name;
@@ -532,7 +532,7 @@ class CourseController extends Controller
         $video_image_path = storage_path('storage/app/public/' . $path . '/' . $video_image_name);
         $ffmpeg->convertImages($video_image_path);
 
-        $request->file('course_videos')->storeAs($path, $video_name);
+        $request->file('course_video')->storeAs($path, $video_name);
 
         $courseVideos = new CourseVideos;
         $courseVideos->video_title = 'raw_' . $created_at . '_' . $file_name;
@@ -1137,5 +1137,9 @@ class CourseController extends Controller
     {
         DB::table('courses')->where('id', $id)->delete();
         return redirect('instructor-course-list')->with(['success' => 'Deleted Successfully']);
+    }
+    public function showVideoPage()
+    {
+        return view('vidio');
     }
 }
